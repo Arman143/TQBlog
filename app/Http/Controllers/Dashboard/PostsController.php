@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Yajra\Datatables\Facades\Datatables;
 use App\Post;
 
 class PostsController extends Controller
@@ -15,8 +16,16 @@ class PostsController extends Controller
      */
     public function index()
     {
-        $posts = Post::orderBy('id', 'desc')->paginate(10);
-        return view('layouts.dashboard.posts.index')->with('posts', $posts);
+        return view('layouts.dashboard.posts.index');
+    }
+    
+    
+
+
+    public function getPosts()
+    {
+        // Using Eloquent
+        return Datatables::eloquent(Post::query())->make(true);
     }
 
     /**
