@@ -19,13 +19,14 @@
                             <th class="text-right">ACTIONS</th>
                         </tr>
                     </thead>
+                    <tfoot>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tfoot>
                 </table>
-                @if(isset($posts))
-                <hr>
-                <div class="text-right">
-                    {{ @$posts->links() }}
-                </div>
-                @endif
             </div>
         </div>
     </div>
@@ -37,9 +38,20 @@
             serverSide: true,
             ajax: '{{url("dashboard/posts/get-posts")}}',
             columns: [
-                {data: 'id'},
-                {data: 'title'}
-            ]
+                {data: 'id', name: 'id'},
+                {data: 'title', name: 'title'},
+                {data: 'action', name: 'action', orderable: false, searchable: false}
+            ],
+            initComplete: function () {
+                this.api().columns([0,1]).every(function () {
+                    var column = this;
+                    var input = document.createElement("input");
+                    $(input).appendTo($(column.footer()).empty())
+                    .on('keyup', function () {
+                        column.search($(this).val(), false, false, true).draw();
+                    });
+                });
+            }
         });
     });
 </script>

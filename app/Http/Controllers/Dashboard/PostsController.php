@@ -25,7 +25,25 @@ class PostsController extends Controller
     public function getPosts()
     {
         // Using Eloquent
-        return Datatables::eloquent(Post::query())->make(true);
+        $rows = Post::select(['*']);
+
+        return Datatables::of($rows)
+            ->addColumn('action', function ($row) {
+                $html = '
+                    <a href="'.url('dashboard/posts/'.$row->id.'/edit').'" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> Edit</a>
+                ';
+                $html .= '
+                    
+                    <form action="'.action('Dashboard\PostsController@destroy', $row->id).'" method="POST">
+                        <input name="_token" type="hidden" value="'.csrf_token().'">
+                        '.method_field('DELETE').'
+                        <input type="submit" value="Delete" class="btn btn-xs btn-danger">
+                    </form>
+
+                        ';
+                return $html;
+            })
+            ->make(true);
     }
 
     /**
