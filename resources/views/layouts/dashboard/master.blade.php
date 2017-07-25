@@ -13,6 +13,8 @@
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <link href="https://datatables.yajrabox.com/css/datatables.bootstrap.css" rel="stylesheet">
+        <link href="{{url('public/jquery-plugins/notifIt/notifIt.min.css')}}" rel="stylesheet">
+        <link href="{{url('public/jquery-plugins/sweetalert2/sweetalert2.min.css')}}" rel="stylesheet">
         
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -20,8 +22,13 @@
         <script src="{{ url('') }}/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
         <script src="https://datatables.yajrabox.com/js/jquery.dataTables.min.js"></script>
         <script src="https://datatables.yajrabox.com/js/datatables.bootstrap.js"></script>
+        <script src="{{url('public/jquery-plugins/notifIt/notifIt.min.js')}}"></script>
+        <script src="{{url('public/jquery-plugins/sweetalert2/sweetalert2.min.js')}}"></script>
     </head>
     <body>
+        
+        @include('layouts.dashboard.messages')
+        
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
@@ -75,6 +82,20 @@
                 @yield('content')
             </div>
         </div>
+        
+        <script>
+            function messageNotif(msg, type, position){
+                notif({
+                    msg: msg,
+                    type: type,
+                    position: position,
+                    multiline: true,
+                    opacity: '0.8',
+                    fade: false,
+                    clickable: false
+                });
+            }
+        </script>
         
     </body>
 </html>

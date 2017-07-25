@@ -1,19 +1,27 @@
 @if(isset($errors) && count($errors) > 0)
-    <div class="alert alert-danger">
-        @foreach($errors->all() as $error)
-            {{$error}}<br>
-        @endforeach
-    </div>
+    <?php $messages = ""; ?>
+    @foreach($errors->all() as $error)
+        <?php $messages .= $error."<br>"; ?>
+    @endforeach
+    <script>
+        $(document).ready(function(){
+            messageNotif("{!!$messages!!}", 'error', 'right');
+        });
+    </script>
 @endif
 
 @if((session('success')))
-    <div class="alert alert-success">
-        {{session('success')}}<br>
-    </div>
+    <script>
+        $(document).ready(function(){
+            messageNotif("{{session('success')}}", 'success', 'right');
+        });
+    </script>
 @endif
 
 @if((session('error')))
-    <div class="alert alert-danger">
-        {{session('error')}}<br>
-    </div>
+    <script>
+        $(document).ready(function(){
+            messageNotif("{{session('error')}}", 'error', 'right');
+        });
+    </script>
 @endif

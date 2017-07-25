@@ -10,7 +10,6 @@
                     <a href="{{ url('dashboard/posts') }}" class="btn btn-xs btn-success"><i class="glyphicon glyphicon-backward"></i> Back</a>
                 </div>
                 <hr>
-                @include('layouts.dashboard.messages')
                 {!! Form::open(['action' => ['Dashboard\PostsController@update', $post->id], 'method' => 'POST']) !!}
                     <div class="form-group">
                         {{Form::label('title', 'Title')}}

@@ -10,7 +10,7 @@ use App\Post;
 class PostsController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing view of the resource.
      *
      * @return \Illuminate\Http\Response
      */
@@ -19,9 +19,11 @@ class PostsController extends Controller
         return view('layouts.dashboard.posts.index');
     }
     
-    
-
-
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function getPosts()
     {
         // Using Eloquent
@@ -31,10 +33,11 @@ class PostsController extends Controller
             ->addColumn('action', function ($row) {
                 $html = '
                     <a href="'.url('dashboard/posts/'.$row->id.'/edit').'" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> Edit</a>
+                    <a href="javascript:void(0);" data-id="'.$row->id.'" data-token="'.csrf_token().'" class="btn btn-xs btn-danger btnDelete"><i class="glyphicon glyphicon-trash"></i> Delete</a>
                 ';
                 $html .= '
                     
-                    <form action="'.action('Dashboard\PostsController@destroy', $row->id).'" method="POST">
+                    <form class="hidden" action="'.action('Dashboard\PostsController@destroy', $row->id).'" method="POST">
                         <input name="_token" type="hidden" value="'.csrf_token().'">
                         '.method_field('DELETE').'
                         <input type="submit" value="Delete" class="btn btn-xs btn-danger">
@@ -42,8 +45,7 @@ class PostsController extends Controller
 
                         ';
                 return $html;
-            })
-            ->make(true);
+        })->make(true);
     }
 
     /**
@@ -131,8 +133,10 @@ class PostsController extends Controller
     public function destroy($id)
     {
         $post = Post::find($id);
-        $post->delete();
-        
-        return redirect(url('dashboard/posts'))->with('success', 'Record removed');
+        if(isset($post) && $post->delete()){
+            return 'success';
+        } else{
+            return 'error';
+        }
     }
 }
