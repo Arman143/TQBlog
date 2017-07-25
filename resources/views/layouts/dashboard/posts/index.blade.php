@@ -4,13 +4,12 @@
 
     <div class="col-md-9">
         <div class="panel panel-default">
-            <div class="panel-heading"><strong>POSTS</strong></div>
+            <div class="panel-heading">
+                <strong>POSTS</strong>
+                <a href="{{ url('dashboard/posts/create') }}" class="pull-right btn btn-xs btn-default"><i class="glyphicon glyphicon-plus"></i> New</a>
+            </div>
             <div class="panel-body">
-                <div>
-                    <a href="{{ url('dashboard/posts/create') }}" class="btn btn-xs btn-success"><i class="glyphicon glyphicon-plus"></i> Create Post</a>
-                </div>
-                <hr>
-                <table id="recordList" class="table table-condensed">
+                <table id="recordList" class="table table-condensed compact">
                     <thead>
                         <tr>
                             <th>ID#</th>
@@ -52,8 +51,17 @@
                         column.search($(this).val(), false, false, true).draw();
                     });
                 });
-            }
+            },
+            language: {
+                search: "_INPUT_",
+                searchPlaceholder: "Search records",
+                lengthMenu: "_MENU_"
+            },
+            stateSave: true
+//            dom: '<"toolbar">frtip'
         });
+        
+        $('#recordList_wrapper > div:first > div').attr('class', '');
         
         $(document).on('click', '.btnDelete', function(){
             
