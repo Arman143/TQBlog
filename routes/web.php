@@ -16,12 +16,9 @@ Auth::routes();
 
 Route::get('/dashboard/', 'DashboardController@index');
 
-Route::get('dashboard/posts/get-posts', 'Dashboard\PostsController@getPosts');
 Route::group(['namespace' => 'Dashboard'], function () {
-    
+    Route::get('dashboard/posts/get-posts', 'PostsController@getPosts');
     Route::resource('dashboard/posts', 'PostsController');
-    
-    
 });
 
 
