@@ -17,11 +17,13 @@
                     <tr>
                         <th>ID#</th>
                         <th>TITLE</th>
+                        <th>USER</th>
                         <th class="text-right">ACTIONS</th>
                     </tr>
                 </thead>
                 <tfoot>
                     <tr>
+                        <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -41,10 +43,11 @@
             columns: [
                 {data: 'id', name: 'id'},
                 {data: 'title', name: 'title'},
+                {data: 'user.name', name: 'user.name'},
                 {data: 'action', class: 'text-right', name: 'action', orderable: false, searchable: false}
             ],
             initComplete: function () {
-                this.api().columns([0,1]).every(function () {
+                this.api().columns([0,1,2]).every(function () {
                     var column = this;
                     var input = document.createElement("input");
                     $(input).addClass('form-control input-sm');
@@ -68,7 +71,7 @@
                 lengthMenu: "_MENU_",
                 processing: '<img src="{{asset("public/images/processing.gif")}}">Processing...'
             },
-            stateSave: true
+//            stateSave: true
         });
         
         $(document).on('click', '.btnDelete', function(){

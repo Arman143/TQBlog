@@ -9,6 +9,11 @@ use App\Post;
 
 class PostsController extends Controller
 {
+    
+    public function __construct() {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing view of the resource.
      *
@@ -27,7 +32,7 @@ class PostsController extends Controller
     public function getPosts()
     {
         // Using Eloquent
-        $rows = Post::select(['*']);
+        $rows = Post::with('user')->select(['posts.*']);
 
         return Datatables::of($rows)
             ->addColumn('action', function ($row) {
@@ -63,6 +68,7 @@ class PostsController extends Controller
         ]);
         
         $post = new Post;
+        $post->user_id = auth()->user()->id;
         $post->title = $request->input('title');
         $post->body = $request->input('description');
         $post->save();
