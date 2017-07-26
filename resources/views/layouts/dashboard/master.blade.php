@@ -12,7 +12,10 @@
 
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-        <link href="https://datatables.yajrabox.com/css/datatables.bootstrap.css" rel="stylesheet">
+        <link href="{{url('public/sb-admin-2/plugins/metisMenu/metisMenu.min.css')}}" rel="stylesheet">
+        <link href="{{url('public/sb-admin-2/css/sb-admin-2.min.css')}}" rel="stylesheet">
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        <link href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet">
         <link href="{{url('public/jquery-plugins/notifIt/notifIt.min.css')}}" rel="stylesheet">
         <link href="{{url('public/jquery-plugins/sweetalert2/sweetalert2.min.css')}}" rel="stylesheet">
         
@@ -20,65 +23,72 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
         <script src="{{ url('') }}/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
-        <script src="https://datatables.yajrabox.com/js/jquery.dataTables.min.js"></script>
-        <script src="https://datatables.yajrabox.com/js/datatables.bootstrap.js"></script>
+        <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
         <script src="{{url('public/jquery-plugins/notifIt/notifIt.min.js')}}"></script>
         <script src="{{url('public/jquery-plugins/sweetalert2/sweetalert2.min.js')}}"></script>
+        <script src="{{url('public/sb-admin-2/plugins/metisMenu/metisMenu.min.js')}}"></script>
+        <script src="{{url('public/sb-admin-2/js/sb-admin-2.js')}}"></script>
+        
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
     </head>
     <body>
         
         @include('layouts.dashboard.messages')
         
-        <nav class="navbar navbar-default navbar-fixed-top">
-            <div class="container">
+        <div id="wrapper">
+            <!-- Navigation -->
+            <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="{{ url('dashboard') }}">Blog</a>
+                    <a class="navbar-brand" href="{{ url('dashboard') }}">TQBlog</a>
                 </div>
-                <div id="navbar" class="collapse navbar-collapse">
-                    <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right">
-                        <!-- Authentication Links -->
-                        @if (Auth::guest())
-                            <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
-                        @else
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
+                <!-- /.navbar-header -->
 
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
-
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
-                                </ul>
+                <ul class="nav navbar-top-links navbar-right">
+                    @if (Auth::guest())
+                        <li><a href="{{ route('login') }}">Login</a></li>
+                        <li><a href="{{ route('register') }}">Register</a></li>
+                    @else
+                    <li class="dropdown pull-right">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+                            <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
                             </li>
-                        @endif
-                    </ul>
-                </div><!--/.nav-collapse -->
-            </div>
-        </nav>
-        
-        <div class="container" style="margin-top: 80px;">
-            <div class="row">
-                @if(!Request::is('login') && !Request::is('register') && !Request::is('password/reset'))
-                    @include('layouts.dashboard.sidebar')
-                @endif  
-
+                            <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
+                            </li>
+                        </ul>
+                        <!-- /.dropdown-user -->
+                    </li>
+                    @endif
+                </ul>
+                <!-- /.navbar-top-links -->
+            </nav>
+            
+            @if(!Request::is('login') && !Request::is('register') && !Request::is('password/reset'))
+                @include('layouts.dashboard.sidebar')
+            @endif
+            
+            <div id="page-wrapper">
                 @yield('content')
             </div>
         </div>

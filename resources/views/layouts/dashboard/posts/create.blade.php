@@ -2,27 +2,26 @@
 
 @section('content')
 
-    <div class="col-md-9">
-        <div class="panel panel-default">
-            <div class="panel-heading"><strong>CREATE POST</strong></div>
-            <div class="panel-body">
-                <div>
-                    <a href="{{ url('dashboard/posts') }}" class="btn btn-xs btn-success"><i class="glyphicon glyphicon-backward"></i> Back</a>
-                </div>
-                <hr>
-                {!! Form::open(['action' => 'Dashboard\PostsController@store', 'method' => 'POST']) !!}
-                    <div class="form-group">
-                        {{Form::label('title', 'Title')}}
-                        {{Form::text('title', '', ['class' => 'form-control', 'placeholder' => 'Title'])}}
-                    </div>
-                    <div class="form-group">
-                        {{Form::label('description', 'Description')}}
-                        {{Form::textarea('description', '', ['class' => 'form-control', 'placeholder' => 'Description'])}}
-                    </div>
-                    {{Form::submit('Submit', ['class' => 'btn btn-primary'])}}
-                {!! Form::close() !!}
-            </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h3 class="page-header">Add Post
+                <a href="{{ url()->previous() }}" class="btn btn-xs btn-default"><i class="glyphicon glyphicon-backward"></i> Back</a>
+            </h3>
         </div>
+    </div>
+
+    <div class="col-md-12">
+        {!! Form::open(['action' => 'Dashboard\PostsController@store', 'method' => 'POST']) !!}
+            <div class="form-group">
+                {{Form::label('title', 'Title')}}
+                {{Form::text('title', '', ['class' => 'form-control', 'placeholder' => 'Title'])}}
+            </div>
+            <div class="form-group">
+                {{Form::label('description', 'Description')}}
+                {{Form::textarea('description', '', ['class' => 'form-control', 'placeholder' => 'Description'])}}
+            </div>
+            {{Form::submit('Submit', ['class' => 'btn btn-primary'])}}
+        {!! Form::close() !!}
     </div>
 
     <script>

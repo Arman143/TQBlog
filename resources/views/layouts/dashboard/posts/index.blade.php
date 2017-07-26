@@ -2,30 +2,32 @@
 
 @section('content')
 
-    <div class="col-md-9">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <strong>POSTS</strong>
-                <a href="{{ url('dashboard/posts/create') }}" class="pull-right btn btn-xs btn-default"><i class="glyphicon glyphicon-plus"></i> New</a>
-            </div>
-            <div class="panel-body">
-                <table id="recordList" class="table table-condensed compact">
-                    <thead>
-                        <tr>
-                            <th>ID#</th>
-                            <th>TITLE</th>
-                            <th class="text-right">ACTIONS</th>
-                        </tr>
-                    </thead>
-                    <tfoot>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tfoot>
-                </table>
-            </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h3 class="page-header">Posts
+                <a href="{{ url('dashboard/posts/create') }}" class="btn btn-xs btn-default"><i class="glyphicon glyphicon-plus"></i> New</a>
+            </h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <table id="recordList" class="table table-hover table-condensed table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>ID#</th>
+                        <th>TITLE</th>
+                        <th class="text-right">ACTIONS</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tfoot>
+            </table>
         </div>
     </div>
 
@@ -52,16 +54,22 @@
                     });
                 });
             },
+            columnDefs: [ {
+                targets: 1,
+                render: function ( data, type, row ) {
+                    return data.length > 40 ?
+                        data.substr( 0, 40 ) +'…' :
+                        data;
+                }
+            } ],
             language: {
                 search: "_INPUT_",
                 searchPlaceholder: "Search records",
-                lengthMenu: "_MENU_"
+                lengthMenu: "_MENU_",
+                processing: '<img src="{{asset("public/images/processing.gif")}}">Processing...'
             },
             stateSave: true
-//            dom: '<"toolbar">frtip'
         });
-        
-        $('#recordList_wrapper > div:first > div').attr('class', '');
         
         $(document).on('click', '.btnDelete', function(){
             

@@ -32,18 +32,9 @@ class PostsController extends Controller
         return Datatables::of($rows)
             ->addColumn('action', function ($row) {
                 $html = '
-                    <a href="'.url('dashboard/posts/'.$row->id.'/edit').'" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> Edit</a>
-                    <a href="javascript:void(0);" data-id="'.$row->id.'" data-token="'.csrf_token().'" class="btn btn-xs btn-danger btnDelete"><i class="glyphicon glyphicon-trash"></i> Delete</a>
+                    <a href="'.url('dashboard/posts/'.$row->id.'/edit').'" class="btn btn-xs btn-default"><i class="glyphicon glyphicon-edit"></i></a>
+                    <a href="javascript:void(0);" data-id="'.$row->id.'" data-token="'.csrf_token().'" class="btn btn-xs btn-default btnDelete"><i class="glyphicon glyphicon-trash"></i></a>
                 ';
-                $html .= '
-                    
-                    <form class="hidden" action="'.action('Dashboard\PostsController@destroy', $row->id).'" method="POST">
-                        <input name="_token" type="hidden" value="'.csrf_token().'">
-                        '.method_field('DELETE').'
-                        <input type="submit" value="Delete" class="btn btn-xs btn-danger">
-                    </form>
-
-                        ';
                 return $html;
         })->make(true);
     }
