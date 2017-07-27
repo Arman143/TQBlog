@@ -71,9 +71,11 @@ class PostsController extends Controller
         $post->user_id = auth()->user()->id;
         $post->title = $request->input('title');
         $post->body = $request->input('description');
-        $post->save();
-        
-        return redirect(url('dashboard/posts'))->with('success', 'Record saved');
+        if($post->save()){
+            echo 'success'; exit;
+        } else{
+            echo 'error'; exit;
+        }
     }
 
     /**
@@ -108,7 +110,7 @@ class PostsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
+        $validator = $this->validate($request, [
             'title' => 'required',
             'description' => 'required'
         ]);
@@ -116,9 +118,11 @@ class PostsController extends Controller
         $post = Post::find($id);
         $post->title = $request->input('title');
         $post->body = $request->input('description');
-        $post->save();
-        
-        return redirect(url('dashboard/posts'))->with('success', 'Record updated');
+        if($post->save()){
+            echo 'success'; exit;
+        } else{
+            echo 'error'; exit;
+        }
     }
 
     /**
@@ -131,9 +135,9 @@ class PostsController extends Controller
     {
         $post = Post::find($id);
         if(isset($post) && $post->delete()){
-            return 'success';
+            return 'success'; exit;
         } else{
-            return 'error';
+            return 'error'; exit;
         }
     }
 }

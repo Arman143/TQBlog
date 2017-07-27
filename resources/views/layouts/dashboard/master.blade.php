@@ -10,93 +10,139 @@
 
         <title>{{ config('app.name', 'Laravel') }}</title>
 
-        <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-        <link href="{{url('public/sb-admin-2/plugins/metisMenu/metisMenu.min.css')}}" rel="stylesheet">
-        <link href="{{url('public/sb-admin-2/css/sb-admin-2.min.css')}}" rel="stylesheet">
-        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-        <link href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet">
-        <link href="{{url('public/jquery-plugins/notifIt/notifIt.min.css')}}" rel="stylesheet">
-        <link href="{{url('public/jquery-plugins/sweetalert2/sweetalert2.min.css')}}" rel="stylesheet">
+        <!-- Bootstrap -->
+        <link href="{{url('public/gentelella')}}/plugins/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Font Awesome -->
+        <link href="{{url('public/gentelella')}}/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+        <!-- NProgress -->
+        <link href="{{url('public/gentelella')}}/plugins/nprogress/nprogress.css" rel="stylesheet">
+        <!-- iCheck -->
+        <link href="{{url('public/gentelella')}}/plugins/iCheck/skins/flat/green.css" rel="stylesheet">
+
+        <!-- bootstrap-progressbar -->
+        <link href="{{url('public/gentelella')}}/plugins/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+        <!-- JQVMap -->
+        <link href="{{url('public/gentelella')}}/plugins/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
+        <!-- bootstrap-daterangepicker -->
+        <link href="{{url('public/gentelella')}}/plugins/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+
+        <!-- Custom Theme Style -->
+        <link href="{{url('public/gentelella')}}/build/css/custom.min.css" rel="stylesheet">
         
-        <!-- Latest compiled and minified JavaScript -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-        <script src="{{ url('') }}/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
-        <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
-        <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
-        <script src="{{url('public/jquery-plugins/notifIt/notifIt.min.js')}}"></script>
-        <script src="{{url('public/jquery-plugins/sweetalert2/sweetalert2.min.js')}}"></script>
-        <script src="{{url('public/sb-admin-2/plugins/metisMenu/metisMenu.min.js')}}"></script>
-        <script src="{{url('public/sb-admin-2/js/sb-admin-2.js')}}"></script>
+        <!-- jQuery -->
+        <script src="{{url('public/gentelella')}}/plugins/jquery/dist/jquery.min.js"></script>
         
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
     </head>
-    <body>
+    
+    <body class="nav-md">
         
         @include('layouts.dashboard.messages')
         
-        <div id="wrapper">
-            <!-- Navigation -->
-            <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="{{ url('dashboard') }}">TQBlog</a>
-                </div>
-                <!-- /.navbar-header -->
+        <div class="container body">
+            <div class="main_container"> 
+                @if(!Request::is('login') && !Request::is('register') && !Request::is('password/reset'))
+                    @include('layouts.dashboard.sidebar')
+                @endif
+                
+                <!-- top navigation -->
+                <div class="top_nav">
+                    <div class="nav_menu">
+                        <nav>
+                            <div class="nav toggle">
+                                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                            </div>
 
-                <ul class="nav navbar-top-links navbar-right">
-                    @if (Auth::guest())
-                        <li><a href="{{ route('login') }}">Login</a></li>
-                        <li><a href="{{ route('register') }}">Register</a></li>
-                    @else
-                    <li class="dropdown pull-right">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
-                        </a>
-                        <ul class="dropdown-menu dropdown-user">
-                            <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                            </li>
-                            <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    {{ csrf_field() }}
-                                </form>
-                            </li>
-                        </ul>
-                        <!-- /.dropdown-user -->
-                    </li>
-                    @endif
-                </ul>
-                <!-- /.navbar-top-links -->
-            </nav>
-            
-            @if(!Request::is('login') && !Request::is('register') && !Request::is('password/reset'))
-                @include('layouts.dashboard.sidebar')
-            @endif
-            
-            <div id="page-wrapper">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="">
+                                    <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                        <img src="{{url('public/images')}}/img.jpg" alt="">John Doe
+                                        <span class=" fa fa-angle-down"></span>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                        <li><a href="javascript:;"> Profile</a></li>
+                                        <li>
+                                            <a href="javascript:;">
+                                                <span class="badge bg-red pull-right">50%</span>
+                                                <span>Settings</span>
+                                            </a>
+                                        </li>
+                                        <li><a href="javascript:;">Help</a></li>
+                                        <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <!-- /top navigation -->
+                
                 @yield('content')
+                
+                <!-- footer content -->
+                <footer>
+                    <div class="pull-right">
+                        Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+                    </div>
+                    <div class="clearfix"></div>
+                </footer>
+                <!-- /footer content -->
+                
             </div>
         </div>
         
+        <!-- Latest compiled and minified JavaScript -->
+        <!-- Bootstrap -->
+        <script src="{{url('public/gentelella')}}/plugins/bootstrap/dist/js/bootstrap.min.js"></script>
+        <!-- FastClick -->
+        <script src="{{url('public/gentelella')}}/plugins/fastclick/lib/fastclick.js"></script>
+        <!-- NProgress -->
+        <script src="{{url('public/gentelella')}}/plugins/nprogress/nprogress.js"></script>
+        <!-- Chart.js -->
+        <script src="{{url('public/gentelella')}}/plugins/Chart.js/dist/Chart.min.js"></script>
+        <!-- gauge.js -->
+        <script src="{{url('public/gentelella')}}/plugins/gauge.js/dist/gauge.min.js"></script>
+        <!-- bootstrap-progressbar -->
+        <script src="{{url('public/gentelella')}}/plugins/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+        <!-- iCheck -->
+        <script src="{{url('public/gentelella')}}/plugins/iCheck/icheck.min.js"></script>
+        <!-- Skycons -->
+        <script src="{{url('public/gentelella')}}/plugins/skycons/skycons.js"></script>
+        <!-- Flot -->
+        <script src="{{url('public/gentelella')}}/plugins/Flot/jquery.flot.js"></script>
+        <script src="{{url('public/gentelella')}}/plugins/Flot/jquery.flot.pie.js"></script>
+        <script src="{{url('public/gentelella')}}/plugins/Flot/jquery.flot.time.js"></script>
+        <script src="{{url('public/gentelella')}}/plugins/Flot/jquery.flot.stack.js"></script>
+        <script src="{{url('public/gentelella')}}/plugins/Flot/jquery.flot.resize.js"></script>
+        <!-- Flot plugins -->
+        <script src="{{url('public/gentelella')}}/plugins/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+        <script src="{{url('public/gentelella')}}/plugins/flot-spline/js/jquery.flot.spline.min.js"></script>
+        <script src="{{url('public/gentelella')}}/plugins/flot.curvedlines/curvedLines.js"></script>
+        <!-- DateJS -->
+        <script src="{{url('public/gentelella')}}/plugins/DateJS/build/date.js"></script>
+        <!-- JQVMap -->
+        <script src="{{url('public/gentelella')}}/plugins/jqvmap/dist/jquery.vmap.js"></script>
+        <script src="{{url('public/gentelella')}}/plugins/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+        <script src="{{url('public/gentelella')}}/plugins/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
+        <!-- bootstrap-daterangepicker -->
+        <script src="{{url('public/gentelella')}}/plugins/moment/min/moment.min.js"></script>
+        <script src="{{url('public/gentelella')}}/plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
+
+        <!-- Custom Theme Scripts -->
+        <script src="{{url('public/gentelella')}}/build/js/custom.min.js"></script>
+        
         <script>
             function messageNotif(msg, type, position){
+                var label = "";
+                if(type === 'success')
+                    label = "<strong><i class='fa fa-check-circle'></i> Success!</strong><br>";
+                if(type === 'error')
+                    label = "<strong><i class='fa fa-times-circle'></i> Error!</strong><br>";
+                if(type === 'warning')
+                    label = "<strong><i class='fa fa-warning'></i> Warning!</strong><br>";
+                if(type === 'info')
+                    label = "<strong><i class='fa fa-info-circle'></i> Info!</strong><br>";
                 notif({
-                    msg: msg,
+                    msg: label+msg,
                     type: type,
                     position: position,
                     multiline: true,

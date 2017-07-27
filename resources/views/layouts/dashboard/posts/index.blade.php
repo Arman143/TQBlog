@@ -94,24 +94,15 @@
                     data: {
                         'id': id,
                         '_method': 'DELETE',
-                        '_token': token,
+                        '_token': token
                     },
                     success: function (data){
                         if(data === 'success'){
-                            notif({
-                                msg: "<b>Success!</b> Record deleted!",
-                                type: "success",
-                                position: "right"
-                            });
+                            messageNotif('Record deleted', 'success', 'right');
                             customDataTable.ajax.reload();
                         } else{
-                            notif({
-                                msg: "<b>Oops!</b> Record not deleted!",
-                                type: "error",
-                                position: "right"
-                            });
+                            messageNotif('Record not deleted', 'error', 'right');
                         }
-                        console.log(data);
                     }
                 });
             }, function (dismiss) {
