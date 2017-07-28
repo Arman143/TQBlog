@@ -35,13 +35,25 @@ class PostsController extends Controller
         $rows = Post::with('user')->select(['posts.*']);
 
         return Datatables::of($rows)
-            ->addColumn('action', function ($row) {
-                $html = '
-                    <a href="'.url('dashboard/posts/'.$row->id.'/edit').'" class="btn btn-xs btn-default"><i class="glyphicon glyphicon-edit"></i></a>
-                    <a href="javascript:void(0);" data-id="'.$row->id.'" data-token="'.csrf_token().'" class="btn btn-xs btn-default btnDelete"><i class="glyphicon glyphicon-trash"></i></a>
-                ';
-                return $html;
-        })->make(true);
+                ->addColumn('checkbox', function ($row) {
+                    $html = '
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" class="flat"> Unchecked
+                            </label>
+                        </div>
+                    ';
+                    return $html;
+                })
+                ->addColumn('action', function ($row) {
+                    $html = '
+                        <a href="'.url('dashboard/posts/'.$row->id.'/edit').'" class="btn btn-xs btn-default"><i class="glyphicon glyphicon-edit"></i></a>
+                        <a href="javascript:void(0);" data-id="'.$row->id.'" data-token="'.csrf_token().'" class="btn btn-xs btn-default btnDelete"><i class="glyphicon glyphicon-trash"></i></a>
+                    ';
+                    return $html;
+                })
+                ->rawColumns(['checkbox', 'action'])
+                ->make(true);
     }
 
     /**

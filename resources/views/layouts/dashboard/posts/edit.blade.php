@@ -2,30 +2,35 @@
 
 @section('content')
     
-<div class="row">
-    <div class="col-md-12">
-        <h3 class="page-header">Edit Post
-            <a href="{{ url()->previous() }}" class="btn btn-xs"><i class="fa fa-arrow-left"></i> BACK</a>
-        </h3>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-md-12">
-        <form id="editForm">
-            <div class="form-group">
-                <label for="title">Title</label>
-                <input type="text" id="title" name="title" class="form-control" value="{{$post->title}}" placeholder="Title">
+<div class="right_col" role="main">
+    <div class="">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Posts <small>Listing</small></h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-default">Actions</button>
+                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                        <span class="caret"></span>
+                                        <span class="sr-only">Toggle Dropdown</span>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="{{url('dashboard/posts/create')}}">Add New</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <p class="text-muted font-13 m-b-30"></p>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="description">Description</label>
-                <textarea id="description" name="description" class="form-control">{{$post->body}}</textarea>
-            </div>
-            <input type="hidden" name="id" value="{{$post->id}}">
-            <input type="hidden" name="_token" value="{{csrf_token()}}">
-            <input type="hidden" name="_method" value="PUT">
-            <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-save"></i> SAVE</button>
-        </form>
+        </div>
     </div>
 </div>
 

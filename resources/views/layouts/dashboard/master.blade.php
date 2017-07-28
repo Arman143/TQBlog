@@ -25,12 +25,22 @@
         <link href="{{url('public/gentelella')}}/plugins/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
         <!-- bootstrap-daterangepicker -->
         <link href="{{url('public/gentelella')}}/plugins/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
-
+        <!-- Datatables -->
+        <link href="{{url('public/gentelella')}}/plugins/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+        <link href="{{url('public/gentelella')}}/plugins/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
+        <link href="{{url('public/gentelella')}}/plugins/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+        <link href="{{url('public/gentelella')}}/plugins/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
+        <link href="{{url('public/gentelella')}}/plugins/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
+        <!-- notifIt -->
+        <link href="{{url('public')}}/jquery-plugins/notifIt/notifIt.css" rel="stylesheet">
+        <!-- sweetalert2 -->
+        <link href="{{url('public')}}/jquery-plugins/sweetalert2/sweetalert2.min.css" rel="stylesheet">
         <!-- Custom Theme Style -->
-        <link href="{{url('public/gentelella')}}/build/css/custom.min.css" rel="stylesheet">
-        
+        <link href="{{url('public/gentelella')}}/build/css/custom.css" rel="stylesheet">
         <!-- jQuery -->
         <script src="{{url('public/gentelella')}}/plugins/jquery/dist/jquery.min.js"></script>
+        <!-- CKEditor -->
+        <script src="{{url('')}}/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
         
     </head>
     
@@ -61,13 +71,13 @@
                                     <ul class="dropdown-menu dropdown-usermenu pull-right">
                                         <li><a href="javascript:;"> Profile</a></li>
                                         <li>
-                                            <a href="javascript:;">
-                                                <span class="badge bg-red pull-right">50%</span>
-                                                <span>Settings</span>
+                                            <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                                <i class="fa fa-sign-out pull-right"></i> Log Out
                                             </a>
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                {{ csrf_field() }}
+                                            </form>
                                         </li>
-                                        <li><a href="javascript:;">Help</a></li>
-                                        <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -81,7 +91,7 @@
                 <!-- footer content -->
                 <footer>
                     <div class="pull-right">
-                        Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+                        TQBlog - Laravel Admin Panel by <a href="http://tahirafridi.com">Tahir Afridi</a>
                     </div>
                     <div class="clearfix"></div>
                 </footer>
@@ -126,7 +136,26 @@
         <!-- bootstrap-daterangepicker -->
         <script src="{{url('public/gentelella')}}/plugins/moment/min/moment.min.js"></script>
         <script src="{{url('public/gentelella')}}/plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
-
+        <!-- Datatables -->
+        <script src="{{url('public/gentelella')}}/plugins/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script src="{{url('public/gentelella')}}/plugins/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+        <script src="{{url('public/gentelella')}}/plugins/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+        <script src="{{url('public/gentelella')}}/plugins/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+        <script src="{{url('public/gentelella')}}/plugins/datatables.net-buttons/js/buttons.flash.min.js"></script>
+        <script src="{{url('public/gentelella')}}/plugins/datatables.net-buttons/js/buttons.html5.min.js"></script>
+        <script src="{{url('public/gentelella')}}/plugins/datatables.net-buttons/js/buttons.print.min.js"></script>
+        <script src="{{url('public/gentelella')}}/plugins/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+        <script src="{{url('public/gentelella')}}/plugins/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+        <script src="{{url('public/gentelella')}}/plugins/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+        <script src="{{url('public/gentelella')}}/plugins/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+        <script src="{{url('public/gentelella')}}/plugins/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+        <script src="{{url('public/gentelella')}}/plugins/jszip/dist/jszip.min.js"></script>
+        <script src="{{url('public/gentelella')}}/plugins/pdfmake/build/pdfmake.min.js"></script>
+        <script src="{{url('public/gentelella')}}/plugins/pdfmake/build/vfs_fonts.js"></script>
+        <!-- notifIt -->
+        <script src="{{url('public')}}/jquery-plugins/notifIt/notifIt.min.js"></script>
+        <!-- sweetalert2 -->
+        <script src="{{url('public')}}/jquery-plugins/sweetalert2/sweetalert2.min.js"></script>
         <!-- Custom Theme Scripts -->
         <script src="{{url('public/gentelella')}}/build/js/custom.min.js"></script>
         

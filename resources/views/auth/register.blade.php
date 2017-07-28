@@ -19,7 +19,7 @@
                     <div class="clearfix"></div>
                     <div class="separator">
                         <p class="change_link">Already a member ?
-                            <a href="{{url('login')}}" class="to_register"> Log in </a>
+                            <a href="{{url('login')}}" class="to_register"> <b>Log in</b></a>
                         </p>
                         <div class="clearfix"></div>
                     </div>

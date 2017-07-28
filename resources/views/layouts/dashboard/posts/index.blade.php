@@ -2,36 +2,64 @@
 
 @section('content')
 
-    <div class="row">
-        <div class="col-md-12">
-            <h3 class="page-header">Posts
-                <a href="{{ url('dashboard/posts/create') }}" class="btn btn-xs btn-default"><i class="glyphicon glyphicon-plus"></i> New</a>
-            </h3>
-        </div>
-    </div>
+<!-- page content -->
+<div class="right_col" role="main">
+    <div class="">
 
-    <div class="row">
-        <div class="col-md-12">
-            <table id="recordList" class="table table-hover table-condensed table-bordered table-striped">
-                <thead>
-                    <tr>
-                        <th>ID#</th>
-                        <th>TITLE</th>
-                        <th>USER</th>
-                        <th class="text-right">ACTIONS</th>
-                    </tr>
-                </thead>
-                <tfoot>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                </tfoot>
-            </table>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Posts <small>Listing</small></h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-default">Actions</button>
+                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                        <span class="caret"></span>
+                                        <span class="sr-only">Toggle Dropdown</span>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="{{url('dashboard/posts/create')}}">Add New</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <p class="text-muted font-13 m-b-30"></p>
+                        <table id="recordList" class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" class="flat"> ID
+                                            </label>
+                                        </div>
+                                    </th>
+                                    <th>TITLE</th>
+                                    <th>USER</th>
+                                    <th>ACTIONS</th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+</div>
+<!-- /page content -->
 
 <script>
     $(document).ready(function(){
@@ -41,10 +69,10 @@
             serverSide: true,
             ajax: '{{url("dashboard/posts/get-posts")}}',
             columns: [
-                {data: 'id', name: 'id'},
+                {data: 'checkbox', name: 'checkbox', orderable: false, searchable: false},
                 {data: 'title', name: 'title'},
                 {data: 'user.name', name: 'user.name'},
-                {data: 'action', class: 'text-right', name: 'action', orderable: false, searchable: false}
+                {data: 'action', name: 'action', class: 'text-right', orderable: false, searchable: false}
             ],
             initComplete: function () {
                 this.api().columns([0,1,2]).every(function () {

@@ -2,28 +2,62 @@
 
 @section('content')
 
-<div class="row">
-    <div class="col-md-12">
-        <h3 class="page-header">Add Post
-            <a href="{{ url()->previous() }}" class="btn btn-xs"><i class="fa fa-arrow-left"></i> Back</a>
-        </h3>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-md-12">
-        <form id="addForm">
-            <div class="form-group">
-                <label for="title">Title</label>
-                <input type="text" id="title" name="title" class="form-control" placeholder="Title">
+<div class="right_col" role="main">
+    <div class="">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Posts <small>Create New</small></h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-default">Actions</button>
+                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                        <span class="caret"></span>
+                                        <span class="sr-only">Toggle Dropdown</span>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="{{url('dashboard/posts')}}">Listing</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <p class="text-muted font-13 m-b-30"></p>
+                        <form id="addForm" class="form-horizontal form-label-left">
+                            <input type="hidden" name="_token" value="{{csrf_token()}}">
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">
+                                    Title <span class="required">*</span>
+                                </label>
+                                <div class="col-md-9 col-sm-6 col-xs-12">
+                                    <input type="text" id="title" name="title" required="required" class="form-control col-md-7 col-xs-12">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="description">
+                                    Description <span class="required">*</span>
+                                </label>
+                                <div class="col-md-9 col-sm-6 col-xs-12">
+                                    <textarea class="form-control col-md-7 col-xs-12" id="description" name="description" required="required"></textarea>
+                                </div>
+                            </div>
+                            
+                            <div class="ln_solid"></div>
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                    <button type="submit" class="btn btn-success">Create</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="description">Description</label>
-                <textarea id="description" name="description" class="form-control"></textarea>
-            </div>
-            <input type="hidden" name="_token" value="{{csrf_token()}}">
-            <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-save"></i> ADD</button>
-        </form>
+        </div>
     </div>
 </div>
 

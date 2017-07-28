@@ -12,13 +12,15 @@
                     <div><input type="email" id="email" name="email" value="{{ old('email') }}" class="form-control" placeholder="Email" autofocus required></div>
                     <div><input type="password" id="password" name="password" class="form-control" placeholder="Password" required></div>
                     <div>
-                        <button type="submit" class="btn btn-default submit">login</button>
-                        <a class="reset_pass" href="{{url('password/reset')}}">Lost your password?</a>
+                        <button type="submit" class="btn btn-default pull-left">Login</button>
+                        <p style="margin-right: 0px;" class="reset_pass">Lost your password?
+                        <a href="{{url('password/reset')}}"> <b>Recover</b></a>
+                        </p>
                     </div>
                     <div class="clearfix"></div>
                     <div class="separator">
-                        <p class="change_link">New to site?
-                            <a href="{{url('register')}}" class="to_register"> Create Account </a>
+                        <p class="change_link text-right">New to site?
+                            <a style="margin-right: 0px;" href="{{url('register')}}" class="to_register"> <b>Create Account</b></a>
                         </p>
                         <div class="clearfix"></div>
                         <br>
