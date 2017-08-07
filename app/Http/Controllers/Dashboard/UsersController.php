@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Dashboard;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Yajra\Datatables\Facades\Datatables;
-use App\Post;
+use App\User;
 
-class PostsController extends Controller
+class UsersController extends Controller
 {
     
     public function __construct() {
@@ -24,7 +24,7 @@ class PostsController extends Controller
         $route = \Route::currentRouteName();
         $route = explode('.', $route);
         $controller = $route[0];
-        return view('layouts.dashboard.posts.index')->with(array(
+        return view('layouts.dashboard.users.index')->with(array(
             'controller' => $controller
         ));
     }
@@ -37,12 +37,12 @@ class PostsController extends Controller
     public function ajax()
     {
         // Using Eloquent
-        $rows = Post::with('user')->select(['posts.*']);
+        $rows = User::select(['*']);
 
         return Datatables::of($rows)
                 ->addColumn('action', function ($row) {
                     $html = '
-                        <a href="'.url('dashboard/posts/'.$row->id.'/edit').'" class="btn btn-xs btn-default"><i class="glyphicon glyphicon-edit"></i></a>
+                        <a href="'.url('dashboard/users/'.$row->id.'/edit').'" class="btn btn-xs btn-default"><i class="glyphicon glyphicon-edit"></i></a>
                         <a href="javascript:void(0);" data-id="'.$row->id.'" data-token="'.csrf_token().'" class="btn btn-xs btn-default btnDelete"><i class="glyphicon glyphicon-trash"></i></a>
                     ';
                     return $html;
@@ -58,12 +58,7 @@ class PostsController extends Controller
      */
     public function create()
     {
-        $route = \Route::currentRouteName();
-        $route = explode('.', $route);
-        $controller = $route[0];
-        return view('layouts.dashboard.posts.create')->with(array(
-            'controller' => $controller
-        ));
+        return redirect(url('dashboard/users'));
     }
 
     /**
@@ -74,20 +69,7 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'title' => 'required',
-            'description' => 'required'
-        ]);
-        
-        $post = new Post;
-        $post->user_id = auth()->user()->id;
-        $post->title = $request->input('title');
-        $post->body = $request->input('description');
-        if($post->save()){
-            echo 'success'; exit;
-        } else{
-            echo 'error'; exit;
-        }
+        //
     }
 
     /**
@@ -113,10 +95,10 @@ class PostsController extends Controller
         $route = explode('.', $route);
         $controller = $route[0];
         
-        $post = Post::find($id);
-        return view('layouts.dashboard.posts.edit')->with(array(
+        $row = User::find($id);
+        return view('layouts.dashboard.users.edit')->with(array(
             'controller' => $controller,
-            'post' => $post
+            'row' => $row
         ));
     }
 
@@ -130,14 +112,14 @@ class PostsController extends Controller
     public function update(Request $request, $id)
     {
         $validator = $this->validate($request, [
-            'title' => 'required',
-            'description' => 'required'
+            'name' => 'required',
+            'email' => 'required'
         ]);
         
-        $post = Post::find($id);
-        $post->title = $request->input('title');
-        $post->body = $request->input('description');
-        if($post->save()){
+        $row = User::find($id);
+        $row->name = $request->input('name');
+        $row->email = $request->input('email');
+        if($row->save()){
             echo 'success'; exit;
         } else{
             echo 'error'; exit;
@@ -152,8 +134,8 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
-        $post = Post::find($id);
-        if(isset($post) && $post->delete()){
+        $row = User::find($id);
+        if(isset($row) && $row->delete()){
             return 'success'; exit;
         } else{
             return 'error'; exit;

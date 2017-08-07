@@ -17,9 +17,11 @@ Auth::routes();
 Route::get('/dashboard/', 'DashboardController@index');
 
 Route::group(['namespace' => 'Dashboard'], function () {
-    Route::get('dashboard/posts/get-posts', 'PostsController@getPosts');
+    Route::get('dashboard/posts/ajax', 'PostsController@ajax');
     Route::resource('dashboard/posts', 'PostsController');
 });
 
-
-Route::resource('posts', 'PostsController');
+Route::group(['namespace' => 'Dashboard'], function () {
+    Route::get('dashboard/users/ajax', 'UsersController@ajax');
+    Route::resource('dashboard/users', 'UsersController');
+});

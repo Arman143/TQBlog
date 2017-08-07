@@ -10,7 +10,7 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Posts <small>Listing</small></h2>
+                        <h2>Users <small>Listing</small></h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li>
                                 <div class="btn-group">
@@ -20,7 +20,7 @@
                                         <span class="sr-only">Toggle Dropdown</span>
                                     </button>
                                     <ul class="dropdown-menu" role="menu">
-                                        <li><a href="{{url('dashboard/posts/create')}}">Add New</a></li>
+                                        <li><a href="{{url('dashboard/users/create')}}">Add New</a></li>
                                     </ul>
                                 </div>
                             </li>
@@ -33,8 +33,8 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>TITLE</th>
-                                    <th>USER</th>
+                                    <th>NAME</th>
+                                    <th>EMAIL</th>
                                     <th>ACTIONS</th>
                                 </tr>
                             </thead>
@@ -61,11 +61,11 @@
         var customDataTable = $('#recordList').DataTable({
             processing: true,
             serverSide: true,
-            ajax: '{{url("dashboard/posts/ajax")}}',
+            ajax: '{{url("dashboard/users/ajax")}}',
             columns: [
                 {data: 'id', name: 'id'},
-                {data: 'title', name: 'title'},
-                {data: 'user.name', name: 'user.name'},
+                {data: 'name', name: 'name'},
+                {data: 'email', name: 'email'},
                 {data: 'action', name: 'action', class: 'text-right', orderable: false, searchable: false}
             ],
             initComplete: function () {
@@ -111,7 +111,7 @@
                 confirmButtonText: 'Yes, delete it!'
             }).then(function () {
                 $.ajax({
-                    url: '{{url("dashboard/posts")}}/'+id,
+                    url: '{{url("dashboard/users")}}/'+id,
                     type: 'DELETE',
                     data: {
                         'id': id,

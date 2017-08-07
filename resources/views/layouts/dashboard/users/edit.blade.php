@@ -8,7 +8,7 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Posts <small>Edit</small></h2>
+                        <h2>Users <small>Edit</small></h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li>
                                 <div class="btn-group">
@@ -18,8 +18,8 @@
                                         <span class="sr-only">Toggle Dropdown</span>
                                     </button>
                                     <ul class="dropdown-menu" role="menu">
-                                        <li><a href="{{url('dashboard/posts/create')}}">Add New</a></li>
-                                        <li><a href="{{url('dashboard/posts')}}">Listing</a></li>
+                                        <li><a href="{{url('dashboard/users/create')}}">Add New</a></li>
+                                        <li><a href="{{url('dashboard/users')}}">Listing</a></li>
                                     </ul>
                                 </div>
                             </li>
@@ -29,23 +29,23 @@
                     <div class="x_content">
                         <p class="text-muted font-13 m-b-30"></p>
                         <form id="editForm" class="form-horizontal form-label-left">
-                            <input type="hidden" name="id" value="{{$post->id}}">
+                            <input type="hidden" name="id" value="{{$row->id}}">
                             <input type="hidden" name="_token" value="{{csrf_token()}}">
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">
-                                    Title <span class="required">*</span>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Name">
+                                    Name <span class="required">*</span>
                                 </label>
                                 <div class="col-md-9 col-sm-6 col-xs-12">
-                                    <input value="{{$post->title}}" type="text" id="title" name="title" required="required" class="form-control col-md-7 col-xs-12">
+                                    <input value="{{$row->name}}" type="text" id="name" name="name" required="required" class="form-control col-md-7 col-xs-12">
                                 </div>
                             </div>
                             
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="description">
-                                    Description <span class="required">*</span>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Email">
+                                    Email <span class="required">*</span>
                                 </label>
                                 <div class="col-md-9 col-sm-6 col-xs-12">
-                                    <textarea class="form-control col-md-7 col-xs-12" id="description" name="description" required="required">{{$post->body}}</textarea>
+                                    <input value="{{$row->email}}" type="email" id="email" name="email" required="required" class="form-control col-md-7 col-xs-12">
                                 </div>
                             </div>
                             
@@ -64,11 +64,11 @@
 </div>
 
 <script>
-    CKEDITOR.replace( 'description' );
+    //CKEDITOR.replace( 'description' );
     $(document).ready(function(){
         $(document).on('submit', '#editForm', function(){
             $.ajax({
-                url: '{{url("dashboard/posts/$post->id")}}',
+                url: '{{url("dashboard/users/$row->id")}}',
                 type: 'PUT',
                 data: $('#editForm').serialize(),
                 success: function (data){

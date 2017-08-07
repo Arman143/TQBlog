@@ -26,11 +26,12 @@
             <div class="menu_section">
                 <h3>General</h3>
                 <ul class="nav side-menu">
-                    <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
-                        <ul class="nav child_menu">
-                            <li><a href="{{url('dashboard')}}">Dashboard</a></li>
-                            <li><a href="{{url('dashboard/posts')}}">Posts</a></li>
-                        </ul>
+                    <li><a href="{{url('dashboard')}}"><i class="fa fa-home"></i> Home</a></li>
+                    <li class="<?php echo isset($controller) && $controller === 'posts' ? 'current-page' : ''; ?>">
+                        <a href="{{url('dashboard/posts')}}"><i class="fa fa-leaf"></i> Posts</a>
+                    </li>
+                    <li class="<?php echo isset($controller) && $controller === 'users' ? 'current-page' : ''; ?>">
+                        <a href="{{url('dashboard/users')}}"><i class="fa fa-user"></i> Users</a>
                     </li>
                 </ul>
             </div>
