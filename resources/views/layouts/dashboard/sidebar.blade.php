@@ -33,6 +33,9 @@
                     <li class="<?php echo isset($controller) && $controller === 'users' ? 'current-page' : ''; ?>">
                         <a href="{{url('dashboard/users')}}"><i class="fa fa-user"></i> Users</a>
                     </li>
+                    <li class="<?php echo isset($controller) && $controller === 'categories' ? 'current-page' : ''; ?>">
+                        <a href="{{url('dashboard/categories')}}"><i class="fa fa-user"></i> Categories</a>
+                    </li>
                 </ul>
             </div>
         </div>

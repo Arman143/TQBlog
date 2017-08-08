@@ -25,3 +25,8 @@ Route::group(['namespace' => 'Dashboard'], function () {
     Route::get('dashboard/users/ajax', 'UsersController@ajax');
     Route::resource('dashboard/users', 'UsersController');
 });
+
+Route::group(['namespace' => 'Dashboard'], function () {
+    Route::get('dashboard/categories/ajax', 'CategoriesController@ajax');
+    Route::resource('dashboard/categories', 'CategoriesController');
+});
