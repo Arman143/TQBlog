@@ -34,12 +34,16 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>TITLE</th>
+                                    <th>CATEGORY</th>
                                     <th>USER</th>
+                                    <th>STATUS</th>
                                     <th>ACTIONS</th>
                                 </tr>
                             </thead>
                             <tfoot>
                                 <tr>
+                                    <td></td>
+                                    <td></td>
                                     <td></td>
                                     <td></td>
                                     <td></td>
@@ -65,11 +69,13 @@
             columns: [
                 {data: 'id', name: 'id'},
                 {data: 'title', name: 'title'},
+                {data: 'category.name', name: 'category.name'},
                 {data: 'user.name', name: 'user.name'},
+                {data: 'status', name: 'status'},
                 {data: 'action', name: 'action', class: 'text-right', orderable: false, searchable: false}
             ],
             initComplete: function () {
-                this.api().columns([0,1,2]).every(function () {
+                this.api().columns([0,1,2,3,4]).every(function () {
                     var column = this;
                     var input = document.createElement("input");
                     $(input).addClass('form-control input-sm');

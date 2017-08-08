@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Yajra\Datatables\Facades\Datatables;
 use App\Post;
+use App\Category;
 
 class PostsController extends Controller
 {
@@ -37,7 +38,7 @@ class PostsController extends Controller
     public function ajax()
     {
         // Using Eloquent
-        $rows = Post::with('user')->select(['posts.*']);
+        $rows = Post::with('user', 'category')->select(['posts.*']);
 
         return Datatables::of($rows)
                 ->addColumn('action', function ($row) {
@@ -61,8 +62,10 @@ class PostsController extends Controller
         $route = \Route::currentRouteName();
         $route = explode('.', $route);
         $controller = $route[0];
+        $categories = Category::all();
         return view('layouts.dashboard.posts.create')->with(array(
-            'controller' => $controller
+            'controller' => $controller,
+            'categories' => $categories
         ));
     }
 
@@ -76,14 +79,18 @@ class PostsController extends Controller
     {
         $this->validate($request, [
             'title' => 'required',
-            'description' => 'required'
+            'description' => 'required',
+            'category_id' => 'required',
+            'status' => 'required'
         ]);
         
-        $post = new Post;
-        $post->user_id = auth()->user()->id;
-        $post->title = $request->input('title');
-        $post->body = $request->input('description');
-        if($post->save()){
+        $row = new Post;
+        $row->user_id = auth()->user()->id;
+        $row->title = $request->input('title');
+        $row->body = $request->input('description');
+        $row->category_id = $request->input('category_id');
+        $row->status = $request->input('status');
+        if($row->save()){
             echo 'success'; exit;
         } else{
             echo 'error'; exit;
@@ -113,10 +120,12 @@ class PostsController extends Controller
         $route = explode('.', $route);
         $controller = $route[0];
         
-        $post = Post::find($id);
+        $row = Post::find($id);
+        $categories = Category::all();
         return view('layouts.dashboard.posts.edit')->with(array(
             'controller' => $controller,
-            'post' => $post
+            'row' => $row,
+            'categories' => $categories
         ));
     }
 
@@ -131,13 +140,17 @@ class PostsController extends Controller
     {
         $validator = $this->validate($request, [
             'title' => 'required',
-            'description' => 'required'
+            'description' => 'required',
+            'category_id' => 'required',
+            'status' => 'required'
         ]);
         
-        $post = Post::find($id);
-        $post->title = $request->input('title');
-        $post->body = $request->input('description');
-        if($post->save()){
+        $row = Post::find($id);
+        $row->title = $request->input('title');
+        $row->body = $request->input('description');
+        $row->category_id = $request->input('category_id');
+        $row->status = $request->input('status');
+        if($row->save()){
             echo 'success'; exit;
         } else{
             echo 'error'; exit;
@@ -152,8 +165,8 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
-        $post = Post::find($id);
-        if(isset($post) && $post->delete()){
+        $row = Post::find($id);
+        if(isset($row) && $row->delete()){
             return 'success'; exit;
         } else{
             return 'error'; exit;

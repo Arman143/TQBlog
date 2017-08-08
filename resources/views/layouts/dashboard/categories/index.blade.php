@@ -33,9 +33,9 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>USER</th>
                                     <th>NAME</th>
                                     <th>TITLE</th>
+                                    <th>USER</th>
                                     <th>STATUS</th>
                                     <th>ACTIONS</th>
                                 </tr>
@@ -68,9 +68,9 @@
             ajax: '{{url("dashboard/categories/ajax")}}',
             columns: [
                 {data: 'id', name: 'id'},
-                {data: 'user.name', name: 'user.name'},
                 {data: 'name', name: 'name'},
                 {data: 'title', name: 'title'},
+                {data: 'user.name', name: 'user.name'},
                 {data: 'status', name: 'status'},
                 {data: 'action', name: 'action', class: 'text-right', orderable: false, searchable: false}
             ],

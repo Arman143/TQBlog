@@ -47,6 +47,34 @@
                                 </div>
                             </div>
                             
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="category_id">
+                                    Category <span class="required">*</span>
+                                </label>
+                                <div class="col-md-9 col-sm-6 col-xs-12">
+                                    <select id="category_id" name="category_id" required="required" class="form-control col-md-7 col-xs-12">
+                                        <option value=""></option>
+                                        @if(isset($categories))
+                                            @foreach($categories as $category)
+                                                <option value="{{$category->id}}">{{$category->name}}</option>
+                                            @endforeach
+                                        @endif
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="status">
+                                    Status <span class="required">*</span>
+                                </label>
+                                <div class="col-md-9 col-sm-6 col-xs-12">
+                                    <select name="status" class="form-control col-md-7 col-xs-12" required="required">
+                                        <option value="Active">Active</option>
+                                        <option value="Inactive">Inactive</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
                             <div class="ln_solid"></div>
                             <div class="form-group">
                                 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">

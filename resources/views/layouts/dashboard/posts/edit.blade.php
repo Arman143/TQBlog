@@ -29,14 +29,14 @@
                     <div class="x_content">
                         <p class="text-muted font-13 m-b-30"></p>
                         <form id="editForm" class="form-horizontal form-label-left">
-                            <input type="hidden" name="id" value="{{$post->id}}">
+                            <input type="hidden" name="id" value="{{$row->id}}">
                             <input type="hidden" name="_token" value="{{csrf_token()}}">
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">
                                     Title <span class="required">*</span>
                                 </label>
                                 <div class="col-md-9 col-sm-6 col-xs-12">
-                                    <input value="{{$post->title}}" type="text" id="title" name="title" required="required" class="form-control col-md-7 col-xs-12">
+                                    <input value="{{$row->title}}" type="text" id="title" name="title" required="required" class="form-control col-md-7 col-xs-12">
                                 </div>
                             </div>
                             
@@ -45,7 +45,36 @@
                                     Description <span class="required">*</span>
                                 </label>
                                 <div class="col-md-9 col-sm-6 col-xs-12">
-                                    <textarea class="form-control col-md-7 col-xs-12" id="description" name="description" required="required">{{$post->body}}</textarea>
+                                    <textarea class="form-control col-md-7 col-xs-12" id="description" name="description" required="required">{{$row->body}}</textarea>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="category_id">
+                                    Category <span class="required">*</span>
+                                </label>
+                                <div class="col-md-9 col-sm-6 col-xs-12">
+                                    <select id="category_id" name="category_id" required="required" class="form-control col-md-7 col-xs-12">
+                                        @if(isset($categories))
+                                            @foreach($categories as $category)
+                                                <option {{$category->id === $row->category_id ? "selected" : ""}} value="{{$category->id}}">{{$category->name}}</option>
+                                            @endforeach
+                                        @else
+                                            <option value=""></option>
+                                        @endif
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="status">
+                                    Status <span class="required">*</span>
+                                </label>
+                                <div class="col-md-9 col-sm-6 col-xs-12">
+                                    <select name="status" class="form-control col-md-7 col-xs-12" required="required">
+                                        <option <?php echo $row->status === 'Active' ? 'selected' : ''; ?> value="Active">Active</option>
+                                        <option <?php echo $row->status === 'Inactive' ? 'selected' : ''; ?> value="Inactive">Inactive</option>
+                                    </select>
                                 </div>
                             </div>
                             
@@ -68,7 +97,7 @@
     $(document).ready(function(){
         $(document).on('submit', '#editForm', function(){
             $.ajax({
-                url: '{{url("dashboard/posts/$post->id")}}',
+                url: '{{url("dashboard/posts/$row->id")}}',
                 type: 'PUT',
                 data: $('#editForm').serialize(),
                 success: function (data){
