@@ -172,4 +172,26 @@ class PostsController extends Controller
             return 'error'; exit;
         }
     }
+    
+    /**
+     * Upload Image Via Ajax Call
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function ajaxImageUpload(Request $request)
+    {
+        $this->validate($request, [
+            'image' => 'image'
+        ]);
+        
+        if($request->hasFile('image')){
+            $fileNameWithExtension = $request->file('image')->getClientOriginalName();
+            $fileName = pathinfo($fileNameWithExtension, PATHINFO_FILENAME);
+            $fileExtension = pathinfo($fileNameWithExtension, PATHINFO_EXTENSION);
+            $fileNameToStore = $fileName.'_'.time().'.'.$fileExtension;
+            $request->file('image')->storeAs('public/', $fileNameToStore);
+            echo 'ok';
+        }
+        //echo "success";
+    }
 }

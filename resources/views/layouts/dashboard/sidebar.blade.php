@@ -27,14 +27,14 @@
                 <h3>General</h3>
                 <ul class="nav side-menu">
                     <li><a href="{{url('dashboard')}}"><i class="fa fa-home"></i> Home</a></li>
+                    <li class="<?php echo isset($controller) && $controller === 'categories' ? 'current-page' : ''; ?>">
+                        <a href="{{url('dashboard/categories')}}"><i class="fa fa-list-ul"></i> Categories</a>
+                    </li>
                     <li class="<?php echo isset($controller) && $controller === 'posts' ? 'current-page' : ''; ?>">
                         <a href="{{url('dashboard/posts')}}"><i class="fa fa-leaf"></i> Posts</a>
                     </li>
                     <li class="<?php echo isset($controller) && $controller === 'users' ? 'current-page' : ''; ?>">
                         <a href="{{url('dashboard/users')}}"><i class="fa fa-user"></i> Users</a>
-                    </li>
-                    <li class="<?php echo isset($controller) && $controller === 'categories' ? 'current-page' : ''; ?>">
-                        <a href="{{url('dashboard/categories')}}"><i class="fa fa-user"></i> Categories</a>
                     </li>
                 </ul>
             </div>

@@ -11,13 +11,14 @@
 |
 */
 
- Route::get('/', 'PostsController@index');
+Route::get('/', 'PostsController@index');
 Auth::routes();
 
 Route::get('/dashboard/', 'DashboardController@index');
 
 Route::group(['namespace' => 'Dashboard'], function () {
     Route::get('dashboard/posts/ajax', 'PostsController@ajax');
+    Route::post('dashboard/posts/ajax-image-upload', 'PostsController@ajaxImageUpload');
     Route::resource('dashboard/posts', 'PostsController');
 });
 
