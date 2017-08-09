@@ -2,7 +2,7 @@
     <div class="left_col scroll-view">
 
         <div class="navbar nav_title" style="border: 0;">
-            <a href="{{url('dashboard')}}" class="site_title"><i class="fa fa-th"></i> <span>TQBlog</span></a>
+            <a href="{{url('dashboard')}}" class="site_title"><b class="fa fa-caret-left"></b> <span>TQBlog</span> <b class="fa fa-caret-right"></b></a>
         </div>
 
         <div class="clearfix"></div>
@@ -14,7 +14,7 @@
             </div>
             <div class="profile_info">
                 <span>Welcome,</span>
-                <h2>John Doe</h2>
+                <h2>Tahir Afridi</h2>
             </div>
         </div>
         <!-- /menu profile quick info -->
