@@ -37,14 +37,32 @@
         <link href="{{url('public')}}/jquery-plugins/sweetalert2/sweetalert2.min.css" rel="stylesheet">
         <!-- Custom Theme Style -->
         <link href="{{url('public/gentelella')}}/build/css/custom.css" rel="stylesheet">
+        <link href="{{url('public/css/custom.css')}}" rel="stylesheet">
         <!-- jQuery -->
         <script src="{{url('public/gentelella')}}/plugins/jquery/dist/jquery.min.js"></script>
         <!-- CKEditor -->
         <script src="{{url('')}}/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
         
+        <script>
+            function setMenu(){
+                if(localStorage.getItem('bodyClass') === 'nav-md'){
+                    $('body').addClass('nav-md');
+                    $('body').removeClass('nav-sm');
+                } else if(localStorage.getItem('bodyClass') === 'nav-sm'){
+                    $('body').addClass('nav-sm');
+                    $('body').removeClass('nav-md');
+                } else{
+                    $('body').addClass('nav-md');
+                    $('body').removeClass('nav-sm');
+                }
+            }
+        </script>
+        
     </head>
     
     <body class="nav-md">
+        
+        <script>setMenu();</script>
         
         @include('layouts.dashboard.messages')
         
@@ -59,7 +77,7 @@
                     <div class="nav_menu">
                         <nav>
                             <div class="nav toggle">
-                                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                                <a onclick="menuToggle();" id="menu_toggle"><i class="fa fa-bars"></i></a>
                             </div>
 
                             <ul class="nav navbar-nav navbar-right">
@@ -180,7 +198,27 @@
                     clickable: false
                 });
             }
+            
+            function menuToggle(){
+                if($('body').hasClass('nav-md')){
+                    localStorage.setItem('bodyClass', 'nav-sm');
+                } else{
+                    localStorage.setItem('bodyClass', 'nav-md');
+                }
+            }
+            
+            function imagePreview(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        $('#result').show();
+                        $('#result').html('<img class="img-responsive" src="'+e.target.result+'">');
+                    }
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
         </script>
         
     </body>
+    
 </html>

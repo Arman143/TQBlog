@@ -80,16 +80,17 @@ class PostsController extends Controller
         $this->validate($request, [
             'title' => 'required',
             'description' => 'required',
-            'category_id' => 'required',
-            'status' => 'required'
+            'category_id' => 'required'
         ]);
+        
+        $status = empty($request->input('status')) ? 'Inactive' : 'Active';
         
         $row = new Post;
         $row->user_id = auth()->user()->id;
         $row->title = $request->input('title');
         $row->body = $request->input('description');
         $row->category_id = $request->input('category_id');
-        $row->status = $request->input('status');
+        $row->status = $status;
         if($row->save()){
             echo 'success'; exit;
         } else{
@@ -187,11 +188,29 @@ class PostsController extends Controller
         if($request->hasFile('image')){
             $fileNameWithExtension = $request->file('image')->getClientOriginalName();
             $fileName = pathinfo($fileNameWithExtension, PATHINFO_FILENAME);
+            $fileName = str_replace(' ', '-', strtolower($fileName));
             $fileExtension = pathinfo($fileNameWithExtension, PATHINFO_EXTENSION);
             $fileNameToStore = $fileName.'_'.time().'.'.$fileExtension;
-            $request->file('image')->storeAs('public/', $fileNameToStore);
-            echo 'ok';
+            //$monthYear = date('m-Y');
+            //$postsImagesPath = 'posts/images/'.$monthYear;
+            $uploaded = $request->file('image')->storeAs('public/uploads/temp', $fileNameToStore);
+            
+            if($uploaded != FALSE){
+                echo 'success|'.$fileNameToStore; exit;
+            }
+            
+//            $row = Post::find($request->input('id'));
+//            if($row){
+//                $row->uploads_dir = $postsImagesPath;
+//                $row->image = $fileNameToStore;
+//                if($row->save()){
+//                    echo 'success'; exit;
+//                } else{
+//                    echo 'error'; exit;
+//                }
+//            } else{
+//                echo 'error'; exit;
+//            }
         }
-        //echo "success";
     }
 }
