@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Yajra\Datatables\Facades\Datatables;
+//use Illuminate\Support\Facades\Storage;
 use App\Post;
 use App\Category;
 
@@ -63,6 +64,7 @@ class PostsController extends Controller
         $route = explode('.', $route);
         $controller = $route[0];
         $categories = Category::all();
+        
         return view('layouts.dashboard.posts.create')->with(array(
             'controller' => $controller,
             'categories' => $categories

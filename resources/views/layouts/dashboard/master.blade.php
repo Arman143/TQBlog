@@ -212,11 +212,19 @@
                     var reader = new FileReader();
                     reader.onload = function (e) {
                         $('#result').show();
-                        $('#result').html('<img class="img-responsive" src="'+e.target.result+'">');
+                        $('#result #imageHolder').html('<img class="img-responsive" src="'+e.target.result+'">');
+                        
                     }
                     reader.readAsDataURL(input.files[0]);
                 }
             }
+            
+            function removeImage(){
+                $('#result').hide();
+                $('#result #imageHolder').html('');
+                $('#filename').val('');
+            }
+            
         </script>
         
     </body>

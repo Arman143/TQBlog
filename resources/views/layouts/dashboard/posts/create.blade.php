@@ -31,6 +31,7 @@
                             <div class="col-md-8">
                                 <form id="addForm" class="form-horizontal form-label-left inlineForm">
                                     <input type="hidden" name="_token" value="{{csrf_token()}}">
+                                    <input type="hidden" id="filename" name="filename">
                                     
                                     <div class="row">
                                         <div class="col-md-6">
@@ -87,7 +88,10 @@
                                         <div class="progress" style="display:none; margin-bottom:3px;">
                                             <div class="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:0%;">100%</div>
                                         </div>
-                                        <div id="result" style="display:none;"></div>
+                                        <div id="result" style="display:none;">
+                                            <div id="imageHolder" style="margin-bottom: 10px;"></div>
+                                            <button onclick="removeImage();" type="button" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Remove</button>
+                                        </div>
                                     </div>
                                 </form>
                             </div>
@@ -101,7 +105,65 @@
 
 <script>
     CKEDITOR.replace( 'description' );
+    
     $(document).ready(function(){
+        
+        $('#fileUpload').on('change', function(e){
+            var thisObj = this;
+            e.preventDefault();
+            e.stopImmediatePropagation();
+            var formData = new FormData($(this)[0]);
+            formData.append('_token', '{{csrf_token()}}');
+            $('.progress').show();
+            $.ajax({
+                xhr: function() {
+                    var xhr = new window.XMLHttpRequest();
+                    xhr.upload.addEventListener("progress", function(evt) {
+                        if (evt.lengthComputable) {
+                            var percentComplete = evt.loaded / evt.total;
+                            percentComplete = parseInt(percentComplete * 100);
+                            $('.progress-bar').css('width',percentComplete+"%");
+                            $('.progress-bar').html(percentComplete+"%");
+                            if (percentComplete === 100) {
+                                setTimeout(function(){
+                                    $('.progress').slideUp(function(){
+                                        $('.progress-bar').css('width', '0%');
+                                        $('.progress-bar').html('');
+                                    });
+                                }, 3000);
+                            }
+                        }
+                    }, false);
+                    return xhr;
+                },
+                type:'POST',
+                url: '{{url("dashboard/posts/ajax-image-upload")}}',
+                data: formData,
+                cache:false,
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    var result = data.split('|');
+                    if(result[0] === 'success'){
+                        messageNotif('Image uploaded', 'success', 'right');
+                        $('#filename').val(result[1]);
+                    } else{
+                        messageNotif('Image not uploaded', 'error', 'right');
+                    }
+                    thisObj.reset();
+                },
+                error: function(data){
+                    var errors = data.responseJSON;
+                    var message = "";
+                    $.each(errors, function(index, value){
+                        message += value+"<br>";
+                    });
+                    messageNotif(message, 'error', 'right');
+                }
+            });
+            return false;
+        });
+        
         $(document).on('submit', '#addForm', function(){
             $.ajax({
                 url: '{{url("dashboard/posts")}}',
@@ -125,6 +187,7 @@
             });
             return false;
         });
+        
     });
 </script>
 
