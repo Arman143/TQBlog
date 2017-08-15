@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Yajra\Datatables\Facades\Datatables;
-//use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Storage;
 use App\Post;
 use App\Category;
 
@@ -86,6 +86,18 @@ class PostsController extends Controller
         ]);
         
         $status = empty($request->input('status')) ? 'Inactive' : 'Active';
+        
+        $filename = $request->input('filename');
+        echo public_path().'storage/uploads/temp/'.$filename;
+
+        //if(!empty($filename)){
+            if(file_exists(asset('storage/uploads/temp/'.$filename))){
+                echo 'ok';exit;
+            } else{
+                echo 'no';exit;
+            }
+        //}
+        exit;
         
         $row = new Post;
         $row->user_id = auth()->user()->id;
