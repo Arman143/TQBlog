@@ -11,35 +11,35 @@
         <title>{{ config('app.name', 'Laravel') }}</title>
 
         <!-- Bootstrap -->
-        <link href="{{url('public/gentelella')}}/plugins/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="{{url('gentelella')}}/plugins/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
         <!-- Font Awesome -->
-        <link href="{{url('public/gentelella')}}/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+        <link href="{{url('gentelella')}}/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
         <!-- NProgress -->
-        <link href="{{url('public/gentelella')}}/plugins/nprogress/nprogress.css" rel="stylesheet">
+        <link href="{{url('gentelella')}}/plugins/nprogress/nprogress.css" rel="stylesheet">
         <!-- iCheck -->
-        <link href="{{url('public/gentelella')}}/plugins/iCheck/skins/flat/green.css" rel="stylesheet">
+        <link href="{{url('gentelella')}}/plugins/iCheck/skins/flat/green.css" rel="stylesheet">
 
         <!-- bootstrap-progressbar -->
-        <link href="{{url('public/gentelella')}}/plugins/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+        <link href="{{url('gentelella')}}/plugins/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
         <!-- JQVMap -->
-        <link href="{{url('public/gentelella')}}/plugins/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
+        <link href="{{url('gentelella')}}/plugins/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
         <!-- bootstrap-daterangepicker -->
-        <link href="{{url('public/gentelella')}}/plugins/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+        <link href="{{url('gentelella')}}/plugins/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
         <!-- Datatables -->
-        <link href="{{url('public/gentelella')}}/plugins/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
-        <link href="{{url('public/gentelella')}}/plugins/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
-        <link href="{{url('public/gentelella')}}/plugins/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
-        <link href="{{url('public/gentelella')}}/plugins/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
-        <link href="{{url('public/gentelella')}}/plugins/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
+        <link href="{{url('gentelella')}}/plugins/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+        <link href="{{url('gentelella')}}/plugins/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
+        <link href="{{url('gentelella')}}/plugins/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+        <link href="{{url('gentelella')}}/plugins/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
+        <link href="{{url('gentelella')}}/plugins/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
         <!-- notifIt -->
-        <link href="{{url('public')}}/jquery-plugins/notifIt/notifIt.css" rel="stylesheet">
+        <link href="{{url('')}}/jquery-plugins/notifIt/notifIt.css" rel="stylesheet">
         <!-- sweetalert2 -->
-        <link href="{{url('public')}}/jquery-plugins/sweetalert2/sweetalert2.min.css" rel="stylesheet">
+        <link href="{{url('')}}/jquery-plugins/sweetalert2/sweetalert2.min.css" rel="stylesheet">
         <!-- Custom Theme Style -->
-        <link href="{{url('public/gentelella')}}/build/css/custom.css" rel="stylesheet">
-        <link href="{{url('public/css/custom.css')}}" rel="stylesheet">
+        <link href="{{url('gentelella')}}/build/css/custom.css" rel="stylesheet">
+        <link href="{{url('/css/custom.css')}}" rel="stylesheet">
         <!-- jQuery -->
-        <script src="{{url('public/gentelella')}}/plugins/jquery/dist/jquery.min.js"></script>
+        <script src="{{url('gentelella')}}/plugins/jquery/dist/jquery.min.js"></script>
         <!-- CKEditor -->
         <script src="{{url('')}}/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
         
@@ -83,7 +83,7 @@
                             <ul class="nav navbar-nav navbar-right">
                                 <li class="">
                                     <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                        <img src="{{url('public/images')}}/img.jpg" alt="">Tahir Afridi
+                                        <img src="{{url('/images')}}/img.jpg" alt="">Tahir Afridi
                                         <span class=" fa fa-angle-down"></span>
                                     </a>
                                     <ul class="dropdown-menu dropdown-usermenu pull-right">
@@ -120,62 +120,62 @@
         
         <!-- Latest compiled and minified JavaScript -->
         <!-- Bootstrap -->
-        <script src="{{url('public/gentelella')}}/plugins/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="{{url('gentelella')}}/plugins/bootstrap/dist/js/bootstrap.min.js"></script>
         <!-- FastClick -->
-        <script src="{{url('public/gentelella')}}/plugins/fastclick/lib/fastclick.js"></script>
+        <script src="{{url('gentelella')}}/plugins/fastclick/lib/fastclick.js"></script>
         <!-- NProgress -->
-        <script src="{{url('public/gentelella')}}/plugins/nprogress/nprogress.js"></script>
+        <script src="{{url('gentelella')}}/plugins/nprogress/nprogress.js"></script>
         <!-- Chart.js -->
-        <script src="{{url('public/gentelella')}}/plugins/Chart.js/dist/Chart.min.js"></script>
+        <script src="{{url('gentelella')}}/plugins/Chart.js/dist/Chart.min.js"></script>
         <!-- gauge.js -->
-        <script src="{{url('public/gentelella')}}/plugins/gauge.js/dist/gauge.min.js"></script>
+        <script src="{{url('gentelella')}}/plugins/gauge.js/dist/gauge.min.js"></script>
         <!-- bootstrap-progressbar -->
-        <script src="{{url('public/gentelella')}}/plugins/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+        <script src="{{url('gentelella')}}/plugins/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
         <!-- iCheck -->
-        <script src="{{url('public/gentelella')}}/plugins/iCheck/icheck.min.js"></script>
+        <script src="{{url('gentelella')}}/plugins/iCheck/icheck.min.js"></script>
         <!-- Skycons -->
-        <script src="{{url('public/gentelella')}}/plugins/skycons/skycons.js"></script>
+        <script src="{{url('gentelella')}}/plugins/skycons/skycons.js"></script>
         <!-- Flot -->
-        <script src="{{url('public/gentelella')}}/plugins/Flot/jquery.flot.js"></script>
-        <script src="{{url('public/gentelella')}}/plugins/Flot/jquery.flot.pie.js"></script>
-        <script src="{{url('public/gentelella')}}/plugins/Flot/jquery.flot.time.js"></script>
-        <script src="{{url('public/gentelella')}}/plugins/Flot/jquery.flot.stack.js"></script>
-        <script src="{{url('public/gentelella')}}/plugins/Flot/jquery.flot.resize.js"></script>
+        <script src="{{url('gentelella')}}/plugins/Flot/jquery.flot.js"></script>
+        <script src="{{url('gentelella')}}/plugins/Flot/jquery.flot.pie.js"></script>
+        <script src="{{url('gentelella')}}/plugins/Flot/jquery.flot.time.js"></script>
+        <script src="{{url('gentelella')}}/plugins/Flot/jquery.flot.stack.js"></script>
+        <script src="{{url('gentelella')}}/plugins/Flot/jquery.flot.resize.js"></script>
         <!-- Flot plugins -->
-        <script src="{{url('public/gentelella')}}/plugins/flot.orderbars/js/jquery.flot.orderBars.js"></script>
-        <script src="{{url('public/gentelella')}}/plugins/flot-spline/js/jquery.flot.spline.min.js"></script>
-        <script src="{{url('public/gentelella')}}/plugins/flot.curvedlines/curvedLines.js"></script>
+        <script src="{{url('gentelella')}}/plugins/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+        <script src="{{url('gentelella')}}/plugins/flot-spline/js/jquery.flot.spline.min.js"></script>
+        <script src="{{url('gentelella')}}/plugins/flot.curvedlines/curvedLines.js"></script>
         <!-- DateJS -->
-        <script src="{{url('public/gentelella')}}/plugins/DateJS/build/date.js"></script>
+        <script src="{{url('gentelella')}}/plugins/DateJS/build/date.js"></script>
         <!-- JQVMap -->
-        <script src="{{url('public/gentelella')}}/plugins/jqvmap/dist/jquery.vmap.js"></script>
-        <script src="{{url('public/gentelella')}}/plugins/jqvmap/dist/maps/jquery.vmap.world.js"></script>
-        <script src="{{url('public/gentelella')}}/plugins/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
+        <script src="{{url('gentelella')}}/plugins/jqvmap/dist/jquery.vmap.js"></script>
+        <script src="{{url('gentelella')}}/plugins/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+        <script src="{{url('gentelella')}}/plugins/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
         <!-- bootstrap-daterangepicker -->
-        <script src="{{url('public/gentelella')}}/plugins/moment/min/moment.min.js"></script>
-        <script src="{{url('public/gentelella')}}/plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
+        <script src="{{url('gentelella')}}/plugins/moment/min/moment.min.js"></script>
+        <script src="{{url('gentelella')}}/plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
         <!-- Datatables -->
-        <script src="{{url('public/gentelella')}}/plugins/datatables.net/js/jquery.dataTables.min.js"></script>
-        <script src="{{url('public/gentelella')}}/plugins/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-        <script src="{{url('public/gentelella')}}/plugins/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script src="{{url('public/gentelella')}}/plugins/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
-        <script src="{{url('public/gentelella')}}/plugins/datatables.net-buttons/js/buttons.flash.min.js"></script>
-        <script src="{{url('public/gentelella')}}/plugins/datatables.net-buttons/js/buttons.html5.min.js"></script>
-        <script src="{{url('public/gentelella')}}/plugins/datatables.net-buttons/js/buttons.print.min.js"></script>
-        <script src="{{url('public/gentelella')}}/plugins/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
-        <script src="{{url('public/gentelella')}}/plugins/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
-        <script src="{{url('public/gentelella')}}/plugins/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-        <script src="{{url('public/gentelella')}}/plugins/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
-        <script src="{{url('public/gentelella')}}/plugins/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
-        <script src="{{url('public/gentelella')}}/plugins/jszip/dist/jszip.min.js"></script>
-        <script src="{{url('public/gentelella')}}/plugins/pdfmake/build/pdfmake.min.js"></script>
-        <script src="{{url('public/gentelella')}}/plugins/pdfmake/build/vfs_fonts.js"></script>
+        <script src="{{url('gentelella')}}/plugins/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script src="{{url('gentelella')}}/plugins/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+        <script src="{{url('gentelella')}}/plugins/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+        <script src="{{url('gentelella')}}/plugins/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+        <script src="{{url('gentelella')}}/plugins/datatables.net-buttons/js/buttons.flash.min.js"></script>
+        <script src="{{url('gentelella')}}/plugins/datatables.net-buttons/js/buttons.html5.min.js"></script>
+        <script src="{{url('gentelella')}}/plugins/datatables.net-buttons/js/buttons.print.min.js"></script>
+        <script src="{{url('gentelella')}}/plugins/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+        <script src="{{url('gentelella')}}/plugins/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+        <script src="{{url('gentelella')}}/plugins/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+        <script src="{{url('gentelella')}}/plugins/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+        <script src="{{url('gentelella')}}/plugins/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+        <script src="{{url('gentelella')}}/plugins/jszip/dist/jszip.min.js"></script>
+        <script src="{{url('gentelella')}}/plugins/pdfmake/build/pdfmake.min.js"></script>
+        <script src="{{url('gentelella')}}/plugins/pdfmake/build/vfs_fonts.js"></script>
         <!-- notifIt -->
-        <script src="{{url('public')}}/jquery-plugins/notifIt/notifIt.min.js"></script>
+        <script src="{{url('')}}/jquery-plugins/notifIt/notifIt.min.js"></script>
         <!-- sweetalert2 -->
-        <script src="{{url('public')}}/jquery-plugins/sweetalert2/sweetalert2.min.js"></script>
+        <script src="{{url('')}}/jquery-plugins/sweetalert2/sweetalert2.min.js"></script>
         <!-- Custom Theme Scripts -->
-        <script src="{{url('public/gentelella')}}/build/js/custom.min.js"></script>
+        <script src="{{url('gentelella')}}/build/js/custom.min.js"></script>
         
         <script>
             function messageNotif(msg, type, position){

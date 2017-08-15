@@ -91,7 +91,7 @@
                 search: "_INPUT_",
                 searchPlaceholder: "Search records",
                 lengthMenu: "_MENU_",
-                processing: '<img src="{{asset("public/images/processing.gif")}}">Processing...'
+                processing: '<img src="{{asset("images/processing.gif")}}">Processing...'
             },
 //            stateSave: true
         });

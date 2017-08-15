@@ -11,21 +11,21 @@
         <title>{{ config('app.name', 'Laravel') }}</title>
 
         <!-- Bootstrap -->
-        <link href="{{url('public/gentelella')}}/plugins/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="{{url('gentelella')}}/plugins/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
         <!-- Font Awesome -->
-        <link href="{{url('public/gentelella')}}/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+        <link href="{{url('gentelella')}}/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
         <!-- NProgress -->
-        <link href="{{url('public/gentelella')}}/plugins/nprogress/nprogress.css" rel="stylesheet">
+        <link href="{{url('gentelella')}}/plugins/nprogress/nprogress.css" rel="stylesheet">
         <!-- Animate.css -->
-<!--        <link href="{{url('public/gentelella')}}/plugins/animate.css/animate.min.css" rel="stylesheet">-->
+<!--        <link href="{{url('gentelella')}}/plugins/animate.css/animate.min.css" rel="stylesheet">-->
         
-        <link href="{{url('public')}}/jquery-plugins/notifIt/notifIt.css" rel="stylesheet">
+        <link href="{{url('')}}/jquery-plugins/notifIt/notifIt.css" rel="stylesheet">
         <!-- Custom Theme Style -->
-        <link href="{{url('public/gentelella')}}/build/css/custom.min.css" rel="stylesheet">
+        <link href="{{url('gentelella')}}/build/css/custom.min.css" rel="stylesheet">
         
         <!-- jQuery -->
-        <script src="{{url('public/gentelella')}}/plugins/jquery/dist/jquery.min.js"></script>
-        <script src="{{url('public')}}/jquery-plugins/notifIt/notifIt.min.js"></script>
+        <script src="{{url('gentelella')}}/plugins/jquery/dist/jquery.min.js"></script>
+        <script src="{{url('')}}/jquery-plugins/notifIt/notifIt.min.js"></script>
         
     </head>
     

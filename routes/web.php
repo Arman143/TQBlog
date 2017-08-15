@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'PostsController@index');
+Route::get('/', 'DashboardController@index');
 Auth::routes();
 
 Route::get('/dashboard/', 'DashboardController@index');

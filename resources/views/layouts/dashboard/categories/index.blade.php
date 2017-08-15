@@ -97,7 +97,7 @@
                 search: "_INPUT_",
                 searchPlaceholder: "Search records",
                 lengthMenu: "_MENU_",
-                processing: '<img src="{{asset("public/images/processing.gif")}}">Processing...'
+                processing: '<img src="{{asset("images/processing.gif")}}">Processing...'
             },
 //            stateSave: true
         });
@@ -122,7 +122,7 @@
                     data: {
                         'id': id,
                         '_method': 'DELETE',
-                        '_token': token
+                        '_token': '{{csrf_token()}}'
                     },
                     success: function (data){
                         if(data === 'success'){
