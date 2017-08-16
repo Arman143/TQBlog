@@ -85,25 +85,27 @@ class PostsController extends Controller
             'category_id' => 'required'
         ]);
         
+        $row = new Post;
+        
         $status = empty($request->input('status')) ? 'Inactive' : 'Active';
         
         $filename = $request->input('filename');
-        echo public_path().'storage/uploads/temp/'.$filename;
-
-        //if(!empty($filename)){
-            if(file_exists(asset('storage/uploads/temp/'.$filename))){
-                echo 'ok';exit;
-            } else{
-                echo 'no';exit;
+        if(!empty($filename)){
+            $exists = Storage::disk('public')->exists('uploads/temp/'.$filename);
+            if($exists){
+                $monthYear = date('m-Y');
+                $postsImagesPath = 'posts/images/'.$monthYear;
+                Storage::move('public/uploads/temp/'.$filename, 'public/uploads/'.$postsImagesPath.'/'.$filename);
+                
+                $row->uploads_dir = $postsImagesPath;
+                $row->image = $filename;
             }
-        //}
-        exit;
+        }
         
-        $row = new Post;
         $row->user_id = auth()->user()->id;
+        $row->category_id = $request->input('category_id');
         $row->title = $request->input('title');
         $row->body = $request->input('description');
-        $row->category_id = $request->input('category_id');
         $row->status = $status;
         if($row->save()){
             echo 'success'; exit;
@@ -156,15 +158,17 @@ class PostsController extends Controller
         $validator = $this->validate($request, [
             'title' => 'required',
             'description' => 'required',
-            'category_id' => 'required',
-            'status' => 'required'
+            'category_id' => 'required'
         ]);
         
         $row = Post::find($id);
+        
+        $status = empty($request->input('status')) ? 'Inactive' : 'Active';
+        
         $row->title = $request->input('title');
         $row->body = $request->input('description');
         $row->category_id = $request->input('category_id');
-        $row->status = $request->input('status');
+        $row->status = $status;
         if($row->save()){
             echo 'success'; exit;
         } else{
@@ -205,26 +209,12 @@ class PostsController extends Controller
             $fileName = str_replace(' ', '-', strtolower($fileName));
             $fileExtension = pathinfo($fileNameWithExtension, PATHINFO_EXTENSION);
             $fileNameToStore = $fileName.'_'.time().'.'.$fileExtension;
-            //$monthYear = date('m-Y');
-            //$postsImagesPath = 'posts/images/'.$monthYear;
+            
             $uploaded = $request->file('image')->storeAs('public/uploads/temp', $fileNameToStore);
             
             if($uploaded != FALSE){
                 echo 'success|'.$fileNameToStore; exit;
             }
-            
-//            $row = Post::find($request->input('id'));
-//            if($row){
-//                $row->uploads_dir = $postsImagesPath;
-//                $row->image = $fileNameToStore;
-//                if($row->save()){
-//                    echo 'success'; exit;
-//                } else{
-//                    echo 'error'; exit;
-//                }
-//            } else{
-//                echo 'error'; exit;
-//            }
         }
     }
 }

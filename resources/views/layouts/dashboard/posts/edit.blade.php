@@ -33,7 +33,7 @@
                                 <form id="editForm" class="form-horizontal form-label-left inlineForm">
                                     <input type="hidden" name="id" value="{{$row->id}}">
                                     <input type="hidden" name="_token" value="{{csrf_token()}}">
-                                    <input type="hidden" id="filename" name="filename">
+                                    <input type="hidden" id="filename" name="filename" value="{{ $row->image }}">
                                     
                                     <div class="row">
                                         <div class="col-md-6">
@@ -92,7 +92,12 @@
                                         <div class="progress" style="display:none; margin-bottom:3px;">
                                             <div class="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:0%;">100%</div>
                                         </div>
-                                        <div id="result" style="display:none;"></div>
+                                        <div id="result" style="display:{{ !empty($row->image) ? 'block' : 'none'}}">
+                                            <div id="imageHolder" style="margin-bottom: 10px;">
+                                                <img src="{{asset('storage/uploads/'.$row->uploads_dir.'/'.$row->image)}}" class="img-responsive">
+                                            </div>
+                                            <button onclick="removeImage();" type="button" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Remove</button>
+                                        </div>
                                     </div>
                                 </form>
                             </div>

@@ -44,11 +44,13 @@
                                             <div class="form-group">
                                                 <label for="category_id">Category <span class="required">*</span></label>
                                                 <select id="category_id" name="category_id" required="required" class="form-control">
-                                                    <option value=""></option>
-                                                    @if(isset($categories))
+                                                    @if(isset($categories) && count($categories) > 0)
+                                                        <option value=""></option>
                                                         @foreach($categories as $category)
                                                             <option value="{{$category->id}}">{{$category->name}}</option>
                                                         @endforeach
+                                                    @else
+                                                        <option value="">No Category</option>
                                                     @endif
                                                 </select>
                                             </div>
@@ -81,7 +83,7 @@
                                     <div class="form-group">
                                         <div id="parentDiv">
                                             <div id="placeholder">Choose a File</div>
-                                            <input onchange="imagePreview(this);" type="file" id="image" name="image">
+                                            <input onchange="imagePreview(this);" type="file" id="image" name="image" accept="image/jpg,image/png,image/jpeg,image/gif">
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -172,6 +174,11 @@
                 success: function (data){
                     if(data === 'success'){
                         messageNotif('Record added', 'success', 'right');
+                        $('#addForm').trigger('reset');
+                        $('#fileUpload').trigger('reset');
+                        $('#result').hide();
+                        $('#result #imageHolder').html('');
+                        $('#filename').val('');
                     } else{
                         messageNotif('Record not added', 'error', 'right');
                     }
