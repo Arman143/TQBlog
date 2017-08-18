@@ -117,6 +117,7 @@
             var formData = new FormData($(this)[0]);
             formData.append('_token', '{{csrf_token()}}');
             $('.progress').show();
+            $('#addForm button').hide();
             $.ajax({
                 xhr: function() {
                     var xhr = new window.XMLHttpRequest();
@@ -153,6 +154,7 @@
                         messageNotif('Image not uploaded', 'error', 'right');
                     }
                     thisObj.reset();
+                    $('#addForm button').show();
                 },
                 error: function(data){
                     var errors = data.responseJSON;
@@ -161,6 +163,7 @@
                         message += value+"<br>";
                     });
                     messageNotif(message, 'error', 'right');
+                    $('#addForm button').show();
                 }
             });
             return false;
@@ -179,6 +182,7 @@
                         $('#result').hide();
                         $('#result #imageHolder').html('');
                         $('#filename').val('');
+                        CKEDITOR.instances.description.setData('');
                     } else{
                         messageNotif('Record not added', 'error', 'right');
                     }

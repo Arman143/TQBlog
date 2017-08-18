@@ -165,6 +165,24 @@ class PostsController extends Controller
         
         $status = empty($request->input('status')) ? 'Inactive' : 'Active';
         
+        $filename = $request->input('filename');
+        if(!empty($filename)){
+            if($row->image !== $filename){
+                $exists = Storage::disk('public')->exists('uploads/temp/'.$filename);
+                if($exists){
+                    $monthYear = date('m-Y');
+                    $postsImagesPath = 'posts/images/'.$monthYear;
+                    Storage::move('public/uploads/temp/'.$filename, 'public/uploads/'.$postsImagesPath.'/'.$filename);
+
+                    $row->uploads_dir = $postsImagesPath;
+                    $row->image = $filename;
+                }
+            }
+        } else{
+            $row->uploads_dir = NULL;
+            $row->image = NULL;
+        }
+        
         $row->title = $request->input('title');
         $row->body = $request->input('description');
         $row->category_id = $request->input('category_id');
