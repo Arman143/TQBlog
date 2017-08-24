@@ -225,6 +225,32 @@
                 $('#filename').val('');
             }
             
+//            function removeImage(onchange){
+//                onchange = onchange || false;
+//                $.ajax({
+//                    url: '{{url("dashboard/posts/ajax-image-remove")}}',
+//                    type: 'POST',
+//                    data: {
+//                        filename: $('#filename').val(),
+//                        type: 'post',
+//                        '_token': '{{csrf_token()}}'
+//                    },
+//                    success: function (data){
+//                        if(data === 'success'){
+//                            messageNotif('Image removed', 'success', 'right');
+//                        } else{
+//                            messageNotif('Image did not remove', 'error', 'right');
+//                        }
+//                        
+//                        if(onchange === false){
+//                            $('#result').hide();
+//                            $('#result #imageHolder').html('');
+//                            $('#filename').val('');
+//                        }
+//                    }
+//                });
+//            }
+            
         </script>
         
     </body>

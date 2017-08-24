@@ -19,6 +19,7 @@ Route::get('/dashboard/', 'DashboardController@index');
 Route::group(['namespace' => 'Dashboard'], function () {
     Route::get('dashboard/posts/ajax', 'PostsController@ajax');
     Route::post('dashboard/posts/ajax-image-upload', 'PostsController@ajaxImageUpload');
+    Route::post('dashboard/posts/ajax-image-remove', 'PostsController@ajaxImageRemove');
     Route::resource('dashboard/posts', 'PostsController');
 });
 

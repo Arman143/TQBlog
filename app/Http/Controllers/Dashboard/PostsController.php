@@ -88,8 +88,8 @@ class PostsController extends Controller
         $row = new Post;
         
         $status = empty($request->input('status')) ? 'Inactive' : 'Active';
-        
         $filename = $request->input('filename');
+        
         if(!empty($filename)){
             $exists = Storage::disk('public')->exists('uploads/temp/'.$filename);
             if($exists){
@@ -203,10 +203,11 @@ class PostsController extends Controller
     public function destroy($id)
     {
         $row = Post::find($id);
+        
         if(isset($row) && $row->delete()){
-            return 'success'; exit;
+            return 'success';
         } else{
-            return 'error'; exit;
+            return 'error';
         }
     }
     
@@ -235,4 +236,24 @@ class PostsController extends Controller
             }
         }
     }
+    
+    /**
+     * Remove Image Via Ajax Call
+     *
+     * @return \Illuminate\Http\Response
+     */
+//    public function ajaxImageRemove(Request $request)
+//    {
+//        $filename = $request->input('filename');
+//        $type = $request->input('type');
+//        if($type === 'post' && !empty($filename)){
+//            $exists = Storage::disk('public')->exists('uploads/temp/'.$filename);
+//            if($exists){
+//                $deleted = Storage::delete('public/uploads/temp/'.$filename);
+//                if($deleted){
+//                    echo 'success';
+//                }
+//            }
+//        }
+//    }
 }
