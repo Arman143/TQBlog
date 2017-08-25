@@ -94,7 +94,7 @@
                                         </div>
                                         <div id="result" style="display:{{ !empty($row->image) ? 'block' : 'none'}}">
                                             <div id="imageHolder" style="margin-bottom: 10px;">
-                                                <img src="{{asset('storage/uploads/'.$row->uploads_dir.'/'.$row->image)}}" class="img-responsive">
+                                                <img src="{{Storage::url('uploads/'.$row->uploads_dir.'/'.$row->image)}}" class="img-responsive">
                                             </div>
                                             <button onclick="removeImage();" type="button" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Remove</button>
                                         </div>
