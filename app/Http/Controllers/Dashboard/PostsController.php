@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Yajra\Datatables\Facades\Datatables;
-use Illuminate\Support\Facades\Storage;
+use Storage;
 use App\Post;
 use App\Category;
 
@@ -91,11 +91,11 @@ class PostsController extends Controller
         $filename = $request->input('filename');
         
         if(!empty($filename)){
-            $exists = Storage::disk('public')->exists('uploads/temp/'.$filename);
+            $exists = Storage::exists('uploads/temp/'.$filename);
             if($exists){
                 $monthYear = date('m-Y');
                 $postsImagesPath = 'posts/images/'.$monthYear;
-                Storage::move('public/uploads/temp/'.$filename, 'public/uploads/'.$postsImagesPath.'/'.$filename);
+                Storage::move('uploads/temp/'.$filename, 'uploads/'.$postsImagesPath.'/'.$filename);
                 
                 $row->uploads_dir = $postsImagesPath;
                 $row->image = $filename;
@@ -164,15 +164,17 @@ class PostsController extends Controller
         $row = Post::find($id);
         
         $status = empty($request->input('status')) ? 'Inactive' : 'Active';
-        
         $filename = $request->input('filename');
+        
         if(!empty($filename)){
             if($row->image !== $filename){
-                $exists = Storage::disk('public')->exists('uploads/temp/'.$filename);
+                $exists = Storage::exists('uploads/temp/'.$filename);
                 if($exists){
+                    Storage::delete('uploads/'.$row->uploads_dir.'/'.$row->image);
+                    
                     $monthYear = date('m-Y');
                     $postsImagesPath = 'posts/images/'.$monthYear;
-                    Storage::move('public/uploads/temp/'.$filename, 'public/uploads/'.$postsImagesPath.'/'.$filename);
+                    Storage::move('uploads/temp/'.$filename, 'uploads/'.$postsImagesPath.'/'.$filename);
 
                     $row->uploads_dir = $postsImagesPath;
                     $row->image = $filename;
@@ -204,6 +206,10 @@ class PostsController extends Controller
     {
         $row = Post::find($id);
         
+        if(!is_null($row->uploads_dir) && !is_null($row->image)){
+            Storage::delete('uploads/'.$row->uploads_dir.'/'.$row->image);
+        }
+        
         if(isset($row) && $row->delete()){
             return 'success';
         } else{
@@ -229,7 +235,7 @@ class PostsController extends Controller
             $fileExtension = pathinfo($fileNameWithExtension, PATHINFO_EXTENSION);
             $fileNameToStore = $fileName.'_'.time().'.'.$fileExtension;
             
-            $uploaded = $request->file('image')->storeAs('public/uploads/temp', $fileNameToStore);
+            $uploaded = $request->file('image')->storeAs('uploads/temp', $fileNameToStore);
             
             if($uploaded != FALSE){
                 echo 'success|'.$fileNameToStore; exit;
