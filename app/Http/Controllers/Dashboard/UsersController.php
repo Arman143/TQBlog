@@ -134,11 +134,11 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        $row = User::find($id);
-        if(isset($row) && $row->delete()){
-            return 'success'; exit;
-        } else{
-            return 'error'; exit;
-        }
+//        $row = User::find($id);
+//        if(isset($row) && $row->delete()){
+//            return 'success'; exit;
+//        } else{
+//            return 'error'; exit;
+//        }
     }
 }
